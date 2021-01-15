@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+
+    <script src="jquery-2.1.3.min.js"></script>
+
+    <title>転生したら○○だった件 | 何の妖怪？</title>
+</head>
+<body>
+    <h1>『転生したら○○だった件』</h1>
+
+    <!-- 表示エリア -->
+    <div id="play_area">
+
+        <div id="q_area">
+            <button id="btn_start">START!</button>
+        </div>
+
+        <button id="btn_return_toStart">最初の画面に戻る</button>
+    </div>
+
+    <!-- 質問コンポーネント  -->
+    <div id="q_1" style="display: none">
+        <h4>お風呂の湯船に付いている垢を舐めるのが好き？</h4>
+        <button id="q_1_y">好き</button>
+        <button id="q_1_n">嫌い</button>
+        <img src="img/akaname_1.gif" alt="">
+    </div>
+
+    <div id="q_2" style="display: none;">
+        <h4 style="margin-top: 150px;">どちらかというと好きなのは・・</h4>
+        <button id="q_2_s">海</button>
+        <button id="q_2_m">山</button><br>
+        <img src="img/umi.jpg" alt="">
+    </div>
+
+    <div id="q_3" style="display: none; background-image:url(img/kai.jpeg);">
+        <h4 style="background-color: white;">生まれ変わるとしたら・・・</h4>
+        <button id="q_3_1">人間</button>
+        <button id="q_3_2">貝</button><br>
+        <button id="q_3_3">それ以外(かっこいい系)</button>
+        <button id="q_3_4">それ以外(カワイイ系)</button>
+    </div>
+
+    <div id="q_4" style="display: none;">
+        <h4>将来、ハゲないか心配</h4>
+        <button id="q_4_y">うむ・・</button>
+        <button id="q_4_n">否</button><br>
+        <img src="img/kappa_1.png" style="margin-top: 100px; margin-right: 100px;" alt="">
+    </div> 
+
+    <div id="q_5" style="display: none; margin-top: 400px;">
+        <h4>ふとした時に鼻歌を歌ってしまう</h4>
+        <button id="q_5_y">♪</button>
+        <button id="q_5_n">否</button>
+        <audio id="hanauta" preload="auto" src="sound/hanauta.mp3#t=0,4.0" type="audio/mp3" autoplay></audio>
+    </div>
+
+    <div id="q_6" style="display: none;padding-top: 100px;">
+        <img src="img/urayama.png" alt="">
+        <h4>ついつい人が持っている物の方が良さそうに見えてしまう</h4>
+        <button id="q_6_y">そう思う</button>
+        <button id="q_6_n">否</button>
+    </div>
+
+    <div id="q_7" style="display: none;">
+        <h4>自分の外見的チャームポイントをすぐに言える</h4>
+        <button id="q_7_y">言える！</button>
+        <img src="img/koma.png" alt="">
+        <button id="q_7_n">言えない</button>
+    </div>
+
+    <div id="q_8" style="display: none; background-image: url(img/kane.jpeg); background-size: cover; padding-left: 400px">
+        <h4 style="font-size:2rem; color:mediumblue; background-color: yellow; display: inline-block; margin-top:300px;">金運には自信がある</h4>
+        <button id="q_8_y">ある</button>
+        <button id="q_8_n">否</button>
+    </div>
+
+    <div id="q_9" style="display: none; width: 1000px;">
+        <img src="img/gaikotu.png" alt="" style="height: 300px;">
+        <h4>自分の体型は・・・</h4>
+        <button id="q_9_s" style="margin: 5px;">ガイコツレベル</button>
+        <button id="q_9_m" style="margin: 5px;">中肉中背</button>
+        <button id="q_9_l" style="margin: 5px;">マシュマロタイプ</button>
+    </div>
+
+    <div id="q_10" style="display: none;">
+        <h4>先見性があると思う</h4>
+        <button id="q_10_y">応</button>
+        <button id="q_10_n">否</button>
+    </div>
+
+    <div id="q_11" style="display: none;">
+        <h4>油っぽいものが好きだ</h4>
+        <button id="q_11_y">好き</button>
+        <button id="q_11_n">そうでもない</button>
+    </div>
+
+    <div id="q_12" style="display: none;">
+        <h4>自分はエンターテイナーだ</h4>
+        <button id="q_12_y">そうとも！</button>
+        <button id="q_12_n">そんな気はしない</button>
+    </div>
+
+    <div id="q_13" style="display: none;">
+        <h4>難読漢字も割と読める</h4>
+        <button id="q_13_y">応</button>
+        <button id="q_13_n">否</button>
+    </div>
+
+    <div id="q_14" style="display: none;">
+        <h4>人付き合いは、どちらかというと</h4>
+        <button id="q_14_w">広く浅く</button>
+        <button id="q_14_d">狭く深く</button>
+    </div>
+
+    <!-- 結果コンポーネント -->
+    <div id="akaname" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「垢舐め」です！</p>
+        <img src="img/akaname_2.jpg" alt="" display="height: 200px">
+        <p>風呂場に出没し、風呂桶にこびり付いた垢を舐め落とすと言う妖怪。「垢嘗」とも表記する。
+        外見は人間の子供に似ているが、ざんばら髪で鉤爪と長い舌を持つ。
+        『古今百物語評判』と言う書物によれば、古い風呂屋に棲む化物に「垢ねぶり」と言うものがあり、垢舐めはこの「垢ねぶり」と同一のもの、或いは根源を同じくする妖怪であると言われる。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「垢舐め」です&#033;&hashtags=転生したら妖怪だった県" target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="kappa" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「河童」です！</p>
+        <img src="img/kappa_2.jpg" alt="" display="height: 200px">
+        <p>川に棲む妖怪で、きゅうりと相撲が好き。人間や家畜を川にひきづり込んで尻子玉を抜く。<br>
+           ほぼ日本全国で伝承され、その呼び名や形状も各地方によって異なる。<br>
+        </p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「河童」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="azuki" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「小豆あらい」です！</p>
+        <img src="img/azuki.jpg" alt="" display="height: 200px">
+        <p>場所によって伝承が異なり、大分県では、川のほとりで「小豆洗おか、人取って喰おか」と歌いながら小豆を洗う。その音に気をとられてしまうと、知らないうちに川べりに誘導され落とされてしまうともいう。<br>
+            所変わると、目撃すると幸運に恵まれるとも言われる。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「小豆あらい」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="amabie" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「アマビエ」です！</p>
+        <img src="img/amabie.jpg" alt="" display="height: 200px">
+        <p>髪は長く、目は菱型、口は尖っていて胴体は鱗に覆われており、下半身には三本の足か鰭のようなものがある。<br>
+           豊作と疫病を予言し、疫病予防のために自分の姿を写すようにいう。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「アマビエ」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="rokuro" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「ろくろ首」です！</p>
+        <img src="img/rokuro.jpg" alt="" display="height: 200px">
+        <p>首が長い</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「ろくろ首」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="zashiki" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「座敷ワラシ」です！</p>
+        <img src="img/zashiki.png" alt="" display="height: 200px">
+        <p>３〜15歳の子供の姿をしており、座敷や蔵に住む。
+        　　座敷わらしがいる家は栄えるが、彼らが去った後には没落する。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「座敷ワラシ」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+    <div id="gasha" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「ガシャドクロ」です！</p>
+        <img src="img/gasha.jpg" alt="" display="height: 200px">
+        <p>埋葬されなかった死者の骸骨や怨念が集まって巨大なドクロの姿になった。<br>
+           生きた人間を握りつぶして食べる。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「ガシャドクロ」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="nue" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「鵺」です！</p>
+        <img src="img/nue.jpg" alt="" display="height: 200px">
+        <p>猿の顔、狸の胴体、虎の手足を持ち、尾は蛇。<br>
+           内裏に現れて宮廷人を怯えさせたが、武人に退治された。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「鵺」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="nue" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「鵺」です！</p>
+        <img src="img/nue.jpg" alt="" display="height: 200px">
+        <p>猿の顔、狸の胴体、虎の手足を持ち、尾は蛇。<br>
+            内裏に現れて宮廷人を怯えさせたが、武人に退治された。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「鵺」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="tukumo" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「付喪神」です！</p>
+        <img src="img/tukumo.jpg" alt="" display="height: 200px">
+        <p>長い年月を経た道具が魂を持ったもの。人間をたぶらかす</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「付喪神」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="kudan" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「件」です！</p>
+        <img src="img/kudan.jpg" alt="" display="height: 200px">
+        <p>顔が人間、体が牛。<br> 
+           生まれて数日で死ぬが、その間に作物の豊凶や流行病、旱魃、戦争など重大なことに関して様々な予言をする。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「件」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="nekomata" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「猫又」です！</p>
+        <img src="img/nekomata.jpg" alt="" display="height: 200px">
+        <p>年を経て、尾が二つに分かれて人間を惑わせたりする猫。行灯の油が好物。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「猫又」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="bunpuku" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「分福茶釜」です！</p>
+        <img src="img/bunpuku.jpg" alt="" display="height: 200px">
+        <p>群馬県の茂林寺の和尚さんが買ってきた茶釜。たぬきだとバレて質屋に返却されてたが、見世物でお金を稼いでお寺に寄付した。<br>可愛い。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「分福茶釜」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="hitoku" style="display: none;">
+        <p>一口おばけ</p>
+        <p>我が家によく出る。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「一口おばけ」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+    
+    <script src="index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+body{
+    width: 100%;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+h1{
+    font-size: 3rem;
+}
+#q_area{
+    height: 600px;
+    width: 1000px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#q_area button{
+    
+}
+
+#q_area>div{
+    height: 500px;
+    width: 600px;
+}
+
+#btn_start{
+    font-size: 1rem;
+    font-weight: normal;
+    color: burlywood;
+    background-color: blueviolet;
+    /* text-decoration: none; */
+    border: solid 1px black;
+    border-radius: 5px;
+    height: 50px;
+    width: 200px;
+
+}
+
+button{
+    font-size: 1rem;
+    font-weight: bolder;
+    color: ghostwhite;
+    border-radius: -10px;
+    background-color: darkslategrey;
+    height: 45px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 30px;
+}
+/* #q_1{
+   
+} */
+
+/* #q_1 img{
+    text-align: start;
+} */
+/* q1 */
+#q_1_y:hover, #q_2_m:hover, #q_3_3:hover, #q_4_n:hover, #q_5_y:hover, #q_6_y:hover, #q_7_y:hover, #q_8_y:hover, #q_10_y:hover, #q_11_y:hover, #q_12_y:hover, #q_13_y:hover{
+    color: deeppink;
+}
+
+#q_1_n:hover, #q_2_s:hover, #q_3_4:hover, #q_4_y:hover, #q_5_n:hover, #q_6_n:hover, #q_7_n:hover, #q_8_n:hover, #q_9_s:hover, #q_10_n:hover, #q_11_n:hover, #q_12_n:hover, #q_13_n:hover{
+    color:skyblue;
+}
+
+#q_3_1:hover, #q_14_d{
+    color: brown;
+}
+
+#q_3_2:hover, #q_14_w{
+    color: yellowgreen;
+}
+
+#q_8_y:hover, #q_9_l:hover{
+    color: gold;
+}
+
+#q_8_n:hover, #q_9_m:hover{
+    color: gray;
+}
+
+a{
+    text-decoration: none;
+    border: solid 1px skyblue;
+    padding: 5px;
+}
+
+#akaname img{
+    height: 300px;
+}
+
