@@ -1,3 +1,4 @@
+
 const btnStart = $('#btn_start');
 const q1 = document.getElementById('q_1');
 const q2 = document.getElementById('q_2');
@@ -30,15 +31,21 @@ const bunpuku = document.getElementById('bunpuku');
 const hitoku = document.getElementById('hitoku');
 
 
+// 2020verはlocalStorageを使用してポイントを保持したが、今になってみるとlocalStorageを使用する必要性が感じられなかったので、オブジェクトとして値を保持する
 
-// 各妖怪のポイント
-// 0:アマビエ 1:カッパ 2:小豆洗い 3:ろくろ首 4:座敷童 5:ガシャドクロ 6:鵺 7:付喪神 8:件 9:猫又 10:分服茶釜
-const points = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+// 0:あかなめ 1:アマビエ 2:カッパ 3:小豆洗い 4:ろくろ首 5:座敷童 6:ガシャドクロ 7:件 8:猫又 9:分服茶釜 10:鵺 11:付喪神 12:一口おばけ
+const yokaiArry = ["あかなめ", "アマビエ", "カッパ", "小豆洗い", "ろくろ首", "座敷童", "ガシャドクロ", "件", "猫又", "分服茶釜", "鵺", "付喪神", "一口おばけ"]
 
-// local storageに格納
-for (let i = 0; i < yokais.length; i++) {
-    localStorage.setItem(i, points[i])
+let yokaiDatas = []
+for (let i = 0; i < yokaiArry.length; i++) {
+    let yokaiObj = {
+        id: i,
+        name: yokaiArry[i],
+        point: 0,
+    }
+    yokaiDatas.push(yokaiObj)
 }
+
 
 
 // ！！ function ！！//
@@ -51,9 +58,17 @@ function goPage(del, next) {
     }, 500);
 }
 
-// 引数：ポイント付与するkeyの配列、ポイント数
-// keyの配列をforEach or forin or for
-// 
+
+// let test = [1, 4, 6, 11]
+const addPoint = (/* ポイントを付与する妖怪達のindex#が入ったArry = */ toWho, /*(int)*/point) => { 
+    toWho.forEach(ele => {
+        yokaiDatas[ele].point += point
+    });
+}
+
+console.log(yokaiDatas)
+
+
 
 // alp　に +50 ポイント
 function addPoint_50(alp) {
@@ -71,10 +86,10 @@ function addPoint_3(alp) {
     localStorage.setItem(alp, points[index] += 3)
 }
 // alp　に +1 ポイント
-function addPoint(alp) {
-    const index = yokais.findIndex(yokai => yokai == alp);
-    localStorage.setItem(alp, ++points[index])
-}
+// function addPoint(alp) {
+//     const index = yokais.findIndex(yokai => yokai == alp);
+//     localStorage.setItem(alp, ++points[index])
+// }
 
 
 // start
