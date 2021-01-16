@@ -1,3 +1,7 @@
+button:hover{
+    cursor: pointer;
+}
+
 body{
     width: 100%;
     font-family: 'Noto Sans JP', sans-serif;

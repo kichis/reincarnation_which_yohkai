@@ -20,24 +20,32 @@
     <div id="play_area">
 
         <div id="q_area">
-            <button id="btn_start">START!</button>
+            <button id="btn_start" onclick="location.href='#q1'">START!</button>
         </div>
 
         <button id="btn_return_toStart">最初の画面に戻る</button>
     </div>
 
+    <!-- メモ -->
+    <!--  display: none(非表示), "" || block(表示)-->
+
     <!-- 質問コンポーネント  -->
-    <div id="q_1" style="display: none">
+    <div id="q1" style="display: none">
         <h4>お風呂の湯船に付いている垢を舐めるのが好き？</h4>
-        <button id="q_1_y">好き</button>
-        <button id="q_1_n">嫌い</button>
+        <button onclick="location.href='#result'" value="あかなめ">好き</button>
+        <button onclick="location.href='#q2'">嫌い</button>
+        <!-- <input type="button" value="ボタン"> -->
+
         <img src="img/akaname_1.gif" alt="">
+
     </div>
 
-    <div id="q_2" style="display: none;">
+    <div id="q2" style="display: none;">
         <h4 style="margin-top: 150px;">どちらかというと好きなのは・・</h4>
-        <button id="q_2_s">海</button>
-        <button id="q_2_m">山</button><br>
+        
+        <button class="btn_option" onclick="location.href='#q3'" value="50/1.2.3">海</button>
+        <button class="btn_option" onclick="location.href='#q3'" value="1/4.5.6.7.8.9.10.11">山</button>
+
         <img src="img/umi.jpg" alt="">
     </div>
 
