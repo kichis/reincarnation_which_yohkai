@@ -46,16 +46,7 @@ for (let i = 0; i < yokaiArry.length; i++) {
     yokaiDatas.push(yokaiObj)
 }
 
-
-
-// ！！ function ！！//
-
-// ポイント付与
-const addPoint = (/* ポイントを付与する妖怪のindex#が入ったArry = */ toWho, /*(int)*/point) => {
-    toWho.forEach(ele => {
-        yokaiDatas[ele].point += point
-    });
-}
+// !! function !!
 
 // ページ遷移 (現在のコンポーネントを非表示＆指定したコンポーネントを表示)
 const toNextPage = (nowid, nextid) => {
@@ -66,6 +57,15 @@ const toNextPage = (nowid, nextid) => {
         next.style.display = "";
     // }, 500);
 }
+// ポイント付与
+const addPoint = (/* ポイントを付与する妖怪のindex#が入ったArry = */ toWho, /*(int)*/point) => {
+    toWho.forEach(ele => {
+        yokaiDatas[ele].point += point
+    });
+    console.log(yokaiDatas)
+}
+
+// !! イベントリスナー !!
 
 // hashchangeはコンポーネント遷移のみ担当する
 // btn_optionのonclickはポイント付与のみ担当する
@@ -81,16 +81,16 @@ window.addEventListener('hashchange', e => {
     toNextPage(/*nowコンポーネントid*/oldHash, /*nextコンポーネントid*/newHash);
 }, false);
 
-// valueを配列化
-// addPoint(配列, point)
-// todo:pointを渡す仕組みが必要
-// todo:3pointを渡す仕組みが必要
-
 // 回答ボタンを押すことで、ポイントを付与する
 $(".btn_option").on("click", function () {
-    const btn = $(this).val();
-    console.log(btn)
-    // toNextPage(q1, akaname);
+    const arry = $(this).val().split("/");
+    const featYokai = [arry[0]]
+    const quantityPoint = Number(arry[1])
+    const toWho = arry[2].split(".")
+    addPoint(toWho, quantityPoint)
+    if (featYokai[0] !== '') { 
+        addPoint(featYokai, 3)
+    }
 })
 
 // start

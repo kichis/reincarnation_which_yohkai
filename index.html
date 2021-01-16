@@ -43,13 +43,14 @@
     <div id="q2" style="display: none;">
         <h4 style="margin-top: 150px;">どちらかというと好きなのは・・</h4>
         
-        <button class="btn_option" onclick="location.href='#q3'" value="50/1.2.3">海</button>
-        <button class="btn_option" onclick="location.href='#q3'" value="1/4.5.6.7.8.9.10.11">山</button>
+        <!-- valueで渡す値 = (質問の担当妖怪index#)/付与するポイント数/付与する妖怪のindex# -->
+        <button class="btn_option" onclick="location.href='#q3'" value="/50/1.2.3">海</button>
+        <button class="btn_option" onclick="location.href='#q3'" value="/1/4.5.6.7.8.9.10.11">山</button>
 
         <img src="img/umi.jpg" alt="">
     </div>
 
-    <div id="q_3" style="display: none; background-image:url(img/kai.jpeg);">
+    <div id="q3" style="display: none; background-image:url(img/kai.jpeg);">
         <h4 style="background-color: white;">生まれ変わるとしたら・・・</h4>
         <button id="q_3_1">人間</button>
         <button id="q_3_2">貝</button><br>
