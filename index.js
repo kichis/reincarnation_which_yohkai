@@ -1,3 +1,11 @@
+// 製作メモ:
+// １、2020verはlocalStorageを使用してポイントを保持したが、今になってみるとlocalStorageを使用する必要性が感じられなかったので、オブジェクトとして値を保持する
+// ２、hashchangeを使わずとも、コンポーネント遷移は、onclick->toNextPage機能(次のコンポーネントが引数)で実装可能。
+// hashchangeを実装してみたかったことと、(デバッグ上)該当ボタンを押さないとそのコンポーネントを表示できないのは不便なため、hashから表示コンポーネントを操作できるようにした。
+
+// import domObj from './domgit';
+
+console.log(domObj)
 
 const btnStart = $('#btn_start');
 const q1 = document.getElementById('q1');
@@ -31,9 +39,9 @@ const bunpuku = document.getElementById('bunpuku');
 const hitoku = document.getElementById('hitoku');
 
 
-// 2020verはlocalStorageを使用してポイントを保持したが、今になってみるとlocalStorageを使用する必要性が感じられなかったので、オブジェクトとして値を保持する
 
 // TBD:yokaiDatasのindex#=idになっているのでidを削除するか？？
+
 // 妖怪のid,名前,保有ポイントを保持するオブジェクト
 let yokaiDatas = []
 const yokaiArry = [/*0*/"あかなめ", /*1*/"アマビエ", /*2*/"カッパ", /*3*/"小豆洗い", /*4*/"ろくろ首", /*5*/"座敷童", /*6*/"ガシャドクロ", /*7*/"件", /*8*/"猫又", /*9*/"分服茶釜", /*10*/"鵺", /*11*/"付喪神", /*12*/"一口おばけ"]
@@ -46,31 +54,47 @@ for (let i = 0; i < yokaiArry.length; i++) {
     yokaiDatas.push(yokaiObj)
 }
 
-// !! function !!
+// 基本的にhtmlタグの中のonclick属性は使わない方がいい(使っても関数１つ)ようだが、タグの外の記述だとonclickが感知できなかったため、タグ内に記載することとする。
+// （JSで動的にレンダリングしているためか？）
 
-// ページ遷移 (現在のコンポーネントを非表示＆指定したコンポーネントを表示)
-const toNextPage = (nowid, nextid) => {
-    // setTimeout(function () {
-        $('#' + nowid).hide();
-        var next = document.getElementById(nextid);
-        $("#q_area").prepend(next);
-        next.style.display = "";
-    // }, 500);
-}
+
+
+// !! イベントリスナー !!
+
+
+    
+// onclickで発火する関数は、ポイント付与をするsetPointとコンポーネント遷移をするhashchangeで分ける
+// (戻るボタンなど、コンポーネント遷移するがポイント付与はしない場合が想定されるため)
+
 // ポイント付与
 const addPoint = (/* ポイントを付与する妖怪のindex#が入ったArry = */ toWho, /*(int)*/point) => {
     toWho.forEach(ele => {
         yokaiDatas[ele].point += point
     });
-    console.log(yokaiDatas)
+    // console.log(yokaiDatas)
 }
-
-// !! イベントリスナー !!
-
-// hashchangeはコンポーネント遷移のみ担当する
-// btn_optionのonclickはポイント付与のみ担当する
-// (戻るボタンなど、コンポーネント遷移するがポイント付与はしない場合が想定されるため)
-
+// btnからのvalを分解して変数に入れる(addPointで使う)
+const setPoint = (where) => { 
+    const arry = $(where).val().split("/");
+    const featYokai = [arry[0]]
+    const quantityPoint = Number(arry[1])
+    const toWho = arry[2].split(".")
+    addPoint(toWho, quantityPoint)
+    if (featYokai[0] !== '') {
+        addPoint(featYokai, 3)
+    }
+}
+ 
+// ページ遷移 (現在のコンポーネントを非表示＆指定したコンポーネントを表示)
+const toNextPage = (nowid, nextid) => {
+    // setTimeout(function () {
+    $('#' + nowid).hide();
+    // var next = document.getElementById(nextid);
+    console.log(domObj[nextid])
+    $("#q_area").prepend(domObj[nextid]);
+    // next.style.display = "";
+    // }, 500);
+}
 // URLの#変化を感知 -> 処理
 window.addEventListener('hashchange', e => {
     const oldURL = e.oldURL;
@@ -81,17 +105,7 @@ window.addEventListener('hashchange', e => {
     toNextPage(/*nowコンポーネントid*/oldHash, /*nextコンポーネントid*/newHash);
 }, false);
 
-// 回答ボタンを押すことで、ポイントを付与する
-$(".btn_option").on("click", function () {
-    const arry = $(this).val().split("/");
-    const featYokai = [arry[0]]
-    const quantityPoint = Number(arry[1])
-    const toWho = arry[2].split(".")
-    addPoint(toWho, quantityPoint)
-    if (featYokai[0] !== '') { 
-        addPoint(featYokai, 3)
-    }
-})
+
 
 // start
 $("#btn_start").on("click", function () {
