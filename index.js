@@ -3,40 +3,23 @@
 // ２、hashchangeを使わずとも、コンポーネント遷移は、onclick->toNextPage機能(次のコンポーネントが引数)で実装可能。
 // hashchangeを実装してみたかったことと、(デバッグ上)該当ボタンを押さないとそのコンポーネントを表示できないのは不便なため、hashから表示コンポーネントを操作できるようにした。
 
-// import domObj from './domgit';
-
-console.log(domObj)
-
-const btnStart = $('#btn_start');
-const q1 = document.getElementById('q1');
-const q2 = document.getElementById('q_2');
-const q3 = document.getElementById('q_3');
-const q4 = document.getElementById('q_4');
-const q5 = document.getElementById('q_5');
-const q6 = document.getElementById('q_6');
-const q7 = document.getElementById('q_7');
-const q8 = document.getElementById('q_8');
-const q9 = document.getElementById('q_9');
-const q10 = document.getElementById('q_10');
-const q11 = document.getElementById('q_11');
-const q12 = document.getElementById('q_12');
-const q13 = document.getElementById('q_13');
-const q14 = document.getElementById('q_14');
+// 「各コンポーネントのDOMをオブジェクトの値として格納＆別jsファイルに保存、必要に応じて動的にレンダリングする」という仕様を試してみたが、"上記のDOM要素のonclickイベントを動作させるには、htmlタグ内に記載する必要がある(動的にレンダリングしているせいか？タグ外部に記載したonclickイベントは動作しない)"かつ、"数多くのボタンタグ内に類似のonclickイベントを記載するのは冗長"であったため、妙なことはせず普通にhtmlでdomを記載することにした。
 
 
-const akaname = document.getElementById('akaname');
-const kappa = document.getElementById('kappa');
-const azuki = document.getElementById('azuki');
-const amabie = document.getElementById('amabie');
-const rokuro = document.getElementById('rokuro');
-const zashiki = document.getElementById('zashiki');
-const gasha = document.getElementById('gasha');
-const nue = document.getElementById('nue');
-const tukumo = document.getElementById('tukumo');
-const kudan = document.getElementById('kudan');
-const nekomata = document.getElementById('nekomata');
-const bunpuku = document.getElementById('bunpuku');
-const hitoku = document.getElementById('hitoku');
+
+// const akaname = document.getElementById('akaname');
+// const kappa = document.getElementById('kappa');
+// const azuki = document.getElementById('azuki');
+// const amabie = document.getElementById('amabie');
+// const rokuro = document.getElementById('rokuro');
+// const zashiki = document.getElementById('zashiki');
+// const gasha = document.getElementById('gasha');
+// const nue = document.getElementById('nue');
+// const tukumo = document.getElementById('tukumo');
+// const kudan = document.getElementById('kudan');
+// const nekomata = document.getElementById('nekomata');
+// const bunpuku = document.getElementById('bunpuku');
+// const hitoku = document.getElementById('hitoku');
 
 
 
@@ -56,15 +39,9 @@ for (let i = 0; i < yokaiArry.length; i++) {
 
 // 基本的にhtmlタグの中のonclick属性は使わない方がいい(使っても関数１つ)ようだが、タグの外の記述だとonclickが感知できなかったため、タグ内に記載することとする。
 // （JSで動的にレンダリングしているためか？）
+// 
 
-
-
-// !! イベントリスナー !!
-
-
-    
-// onclickで発火する関数は、ポイント付与をするsetPointとコンポーネント遷移をするhashchangeで分ける
-// (戻るボタンなど、コンポーネント遷移するがポイント付与はしない場合が想定されるため)
+// !! function !!
 
 // ポイント付与
 const addPoint = (/* ポイントを付与する妖怪のindex#が入ったArry = */ toWho, /*(int)*/point) => {
@@ -74,7 +51,7 @@ const addPoint = (/* ポイントを付与する妖怪のindex#が入ったArry 
     // console.log(yokaiDatas)
 }
 // btnからのvalを分解して変数に入れる(addPointで使う)
-const setPoint = (where) => { 
+const setPoint = (where) => {
     const arry = $(where).val().split("/");
     const featYokai = [arry[0]]
     const quantityPoint = Number(arry[1])
@@ -84,26 +61,43 @@ const setPoint = (where) => {
         addPoint(featYokai, 3)
     }
 }
- 
 // ページ遷移 (現在のコンポーネントを非表示＆指定したコンポーネントを表示)
 const toNextPage = (nowid, nextid) => {
     // setTimeout(function () {
     $('#' + nowid).hide();
-    // var next = document.getElementById(nextid);
-    console.log(domObj[nextid])
-    $("#q_area").prepend(domObj[nextid]);
-    // next.style.display = "";
+    var next = document.getElementById(nextid);
+    $("#q_area").prepend(next);
+    next.style.display = "";
     // }, 500);
 }
+
+
+// !! イベントリスナー !!
+
+// onclickで発火する関数は、ポイント付与をするsetPointとコンポーネント遷移をするhashchangeで機能を分ける
+// (戻るボタンなど、コンポーネント遷移するがポイント付与はしない場合が想定されるため)
+
+// ※btn_startとq1はこのイベントリスナーに引っかからない(hashchange処理はhtmlタグ内で指示)
+$("[class^='btn_option']").on("click", function () {
+    setPoint(this)
+    const nextid = $(this).attr("class").split("#")[1];
+    location.hash = "#" + nextid
+})
+
 // URLの#変化を感知 -> 処理
 window.addEventListener('hashchange', e => {
     const oldURL = e.oldURL;
-    // hashがコンポーネントのidを表す
+    // hash名がコンポーネントのidを表す
     const oldHash = oldURL.split("#")[1] || 'btn_start'
     const newHash = location.hash.replace(/^#/, '') || 'btn_start'
     // この時点では、hashは変更されているがコンポーネントは未変更である。よって、変数名(hash)とtoNextPageの引数名の対応関係が不自然になる。
     toNextPage(/*nowコンポーネントid*/oldHash, /*nextコンポーネントid*/newHash);
 }, false);
+    
+
+
+
+
 
 
 
@@ -119,9 +113,7 @@ $("#btn_start").on("click", function () {
 
 
 // q1_n
-$("#q_1_n").on("click", function () {
-    toNextPage(q1, q2);
-})
+
 
 // q2_海
 $("#q_2_s").on("click", function () {
