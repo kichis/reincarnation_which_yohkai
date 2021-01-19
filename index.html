@@ -23,7 +23,8 @@
             <button id="btn_start" onclick="location.href='#q1'">START!</button>
         </div>
 
-        <button id="btn_return_toStart">最初の画面に戻る</button>
+        <button id="btn_to_before">1つ前の画面に戻る</button>
+        <button id="btn_reset">最初の画面に戻る</button>
     </div>
 
     <!-- 以下、質問コンポーネント  -->
@@ -147,7 +148,19 @@
         </a>
     </div>
 
-    <div id="kappa" style="display: none;">
+    <div id="result1" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「アマビエ」です！</p>
+        <img src="img/amabie.jpg" alt="" display="height: 200px">
+        <p>髪は長く、目は菱型、口は尖っていて胴体は鱗に覆われており、下半身には三本の足か鰭のようなものがある。<br>
+            豊作と疫病を予言し、疫病予防のために自分の姿を写すようにいう。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「アマビエ」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="result2" style="display: none;">
         <h5>あなたが転生するなら・・・</h5>
         <p>「河童」です！</p>
         <img src="img/kappa_2.jpg" alt="" display="height: 200px">
@@ -160,7 +173,7 @@
         </a>
     </div>
 
-    <div id="azuki" style="display: none;">
+    <div id="result3" style="display: none;">
         <h5>あなたが転生するなら・・・</h5>
         <p>「小豆あらい」です！</p>
         <img src="img/azuki.jpg" alt="" display="height: 200px">
@@ -172,19 +185,7 @@
         </a>
     </div>
 
-    <div id="amabie" style="display: none;">
-        <h5>あなたが転生するなら・・・</h5>
-        <p>「アマビエ」です！</p>
-        <img src="img/amabie.jpg" alt="" display="height: 200px">
-        <p>髪は長く、目は菱型、口は尖っていて胴体は鱗に覆われており、下半身には三本の足か鰭のようなものがある。<br>
-           豊作と疫病を予言し、疫病予防のために自分の姿を写すようにいう。</p>
-        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「アマビエ」です&#033;&hashtags=転生したら妖怪だった県"
-            target="_blank">
-            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
-        </a>
-    </div>
-
-    <div id="rokuro" style="display: none;">
+    <div id="result4" style="display: none;">
         <h5>あなたが転生するなら・・・</h5>
         <p>「ろくろ首」です！</p>
         <img src="img/rokuro.jpg" alt="" display="height: 200px">
@@ -195,7 +196,7 @@
         </a>
     </div>
 
-    <div id="zashiki" style="display: none;">
+    <div id="result5" style="display: none;">
         <h5>あなたが転生するなら・・・</h5>
         <p>「座敷ワラシ」です！</p>
         <img src="img/zashiki.png" alt="" display="height: 200px">
@@ -206,7 +207,7 @@
             Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
         </a>
     </div>
-    <div id="gasha" style="display: none;">
+    <div id="result6" style="display: none;">
         <h5>あなたが転生するなら・・・</h5>
         <p>「ガシャドクロ」です！</p>
         <img src="img/gasha.jpg" alt="" display="height: 200px">
@@ -218,54 +219,19 @@
         </a>
     </div>
 
-    <div id="nue" style="display: none;">
-        <h5>あなたが転生するなら・・・</h5>
-        <p>「鵺」です！</p>
-        <img src="img/nue.jpg" alt="" display="height: 200px">
-        <p>猿の顔、狸の胴体、虎の手足を持ち、尾は蛇。<br>
-           内裏に現れて宮廷人を怯えさせたが、武人に退治された。</p>
-        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「鵺」です&#033;&hashtags=転生したら妖怪だった県"
-            target="_blank">
-            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
-        </a>
-    </div>
-
-    <div id="nue" style="display: none;">
-        <h5>あなたが転生するなら・・・</h5>
-        <p>「鵺」です！</p>
-        <img src="img/nue.jpg" alt="" display="height: 200px">
-        <p>猿の顔、狸の胴体、虎の手足を持ち、尾は蛇。<br>
-            内裏に現れて宮廷人を怯えさせたが、武人に退治された。</p>
-        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「鵺」です&#033;&hashtags=転生したら妖怪だった県"
-            target="_blank">
-            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
-        </a>
-    </div>
-
-    <div id="tukumo" style="display: none;">
-        <h5>あなたが転生するなら・・・</h5>
-        <p>「付喪神」です！</p>
-        <img src="img/tukumo.jpg" alt="" display="height: 200px">
-        <p>長い年月を経た道具が魂を持ったもの。人間をたぶらかす</p>
-        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「付喪神」です&#033;&hashtags=転生したら妖怪だった県"
-            target="_blank">
-            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
-        </a>
-    </div>
-
-    <div id="kudan" style="display: none;">
+    <div id="result7" style="display: none;">
         <h5>あなたが転生するなら・・・</h5>
         <p>「件」です！</p>
         <img src="img/kudan.jpg" alt="" display="height: 200px">
-        <p>顔が人間、体が牛。<br> 
-           生まれて数日で死ぬが、その間に作物の豊凶や流行病、旱魃、戦争など重大なことに関して様々な予言をする。</p>
+        <p>顔が人間、体が牛。<br>
+            生まれて数日で死ぬが、その間に作物の豊凶や流行病、旱魃、戦争など重大なことに関して様々な予言をする。</p>
         <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「件」です&#033;&hashtags=転生したら妖怪だった県"
             target="_blank">
             Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
         </a>
     </div>
 
-    <div id="nekomata" style="display: none;">
+    <div id="result8" style="display: none;">
         <h5>あなたが転生するなら・・・</h5>
         <p>「猫又」です！</p>
         <img src="img/nekomata.jpg" alt="" display="height: 200px">
@@ -276,7 +242,7 @@
         </a>
     </div>
 
-    <div id="bunpuku" style="display: none;">
+    <div id="result9" style="display: none;">
         <h5>あなたが転生するなら・・・</h5>
         <p>「分福茶釜」です！</p>
         <img src="img/bunpuku.jpg" alt="" display="height: 200px">
@@ -287,7 +253,31 @@
         </a>
     </div>
 
-    <div id="hitoku" style="display: none;">
+    <div id="result10" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「鵺」です！</p>
+        <img src="img/nue.jpg" alt="" display="height: 200px">
+        <p>猿の顔、狸の胴体、虎の手足を持ち、尾は蛇。<br>
+            内裏に現れて宮廷人を怯えさせたが、武人に退治された。</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「鵺」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+    
+    <div id="result11" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
+        <p>「付喪神」です！</p>
+        <img src="img/tukumo.jpg" alt="" display="height: 200px">
+        <p>長い年月を経た道具が魂を持ったもの。人間をたぶらかす</p>
+        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「付喪神」です&#033;&hashtags=転生したら妖怪だった県"
+            target="_blank">
+            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
+        </a>
+    </div>
+
+    <div id="result12" style="display: none;">
+        <h5>あなたが転生するなら・・・</h5>
         <p>一口おばけ</p>
         <p>我が家によく出る。</p>
         <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「一口おばけ」です&#033;&hashtags=転生したら妖怪だった県"
