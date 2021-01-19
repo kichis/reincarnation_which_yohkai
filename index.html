@@ -31,7 +31,7 @@
     <div id="q1" style="display: none">
         <h4>お風呂の湯船に付いている垢を舐めるのが好き？</h4>
         <!-- メモ：<input type="button" value="ボタン">とも書ける -->
-        <button onclick="location.href='#result'" value="あかなめ">好き</button>
+        <button onclick="location.href='#result0'" value="あかなめ">好き</button>
         <button onclick="location.href='#q2'">嫌い</button>
 
         <img src="img/akaname_1.gif" alt="">
@@ -50,86 +50,92 @@
 
      <div id="q3" style="display: none; background-image:url(img/kai.jpeg);">
         <h4 style="background-color: white;">生まれ変わるとしたら・・・</h4>
-        <button class="btn_option_#q4" value="/1/3.4.5.">人間</button>
-        <button class="btn_option_#q4" value="/11/1">貝</button><br>
+        <button class="btn_option_#q4" value="/1/3.4.5">人間</button>
+        <button class="btn_option_#q4" value="/20/1">貝</button><br>
         <button class="btn_option_#q4" value="/1/6.7.10">それ以外(かっこいい系)</button>
         <button class="btn_option_#q4" value="/1/2.8.9.11">それ以外(カワイイ系)</button>
     </div>
 
-    <div id="q_4" style="display: none;">
+    <div id="q4" style="display: none;">
         <h4>将来、ハゲないか心配</h4>
-        <button id="q_4_y">うむ・・</button>
-        <button id="q_4_n">否</button><br>
+        <button class="btn_option_#q5" value="2/1/3.6.7.10">うむ・・</button>
+        <button class="btn_option_#q5" value="/1/1.4.5.8.9.11">否</button><br>
+
         <img src="img/kappa_1.png" style="margin-top: 100px; margin-right: 100px;" alt="">
     </div> 
 
-    <div id="q_5" style="display: none; margin-top: 400px;">
+    <div id="q5" style="display: none; margin-top: 400px;">
         <h4>ふとした時に鼻歌を歌ってしまう</h4>
-        <button id="q_5_y">♪</button>
-        <button id="q_5_n">否</button>
+        <button class="btn_option_#q6" value="3/1/5.6.8.9.10">♪</button>
+        <button class="btn_option_#q6" value="/1/1.2.4.7.11">否</button>
+
         <audio id="hanauta" preload="auto" src="sound/hanauta.mp3#t=0,4.0" type="audio/mp3" autoplay></audio>
     </div>
 
-    <div id="q_6" style="display: none;padding-top: 100px;">
+    <!-- <div id="q6" style="display: none;padding-top: 100px;">
         <img src="img/urayama.png" alt="">
+
         <h4>ついつい人が持っている物の方が良さそうに見えてしまう</h4>
         <button id="q_6_y">そう思う</button>
         <button id="q_6_n">否</button>
-    </div>
+    </div> -->
 
-    <div id="q_7" style="display: none;">
+    <div id="q6" style="display: none;">
         <h4>自分の外見的チャームポイントをすぐに言える</h4>
-        <button id="q_7_y">言える！</button>
+        <button class="btn_option_#q7" value="4/1/1.2.8.9.10.11">言える！</button>
+
         <img src="img/koma.png" alt="">
-        <button id="q_7_n">言えない</button>
+
+        <button class="btn_option_#q7" value="/1/3.5.6.7">言えない</button>
     </div>
 
-    <div id="q_8" style="display: none; background-image: url(img/kane.jpeg); background-size: cover; padding-left: 400px">
-        <h4 style="font-size:2rem; color:mediumblue; background-color: yellow; display: inline-block; margin-top:300px;">金運には自信がある</h4>
-        <button id="q_8_y">ある</button>
-        <button id="q_8_n">否</button>
+    <div id="q7" style="display: none; background-image: url(img/kane.jpeg); background-size: cover; padding-left: 400px">
+        <h4 style="font-size:2rem; color:mediumblue; background-color: yellow; display: inline-block; margin-top:300px;">金運、もしくは稼ぐ力には自信がある</h4>
+
+        <button class="btn_option_#q8" value="5/1/2.8.9">ある</button>
+        <button class="btn_option_#q8" value="/1/1.3.4.6.7.10.11">否</button>
     </div>
 
-    <div id="q_9" style="display: none; width: 1000px;">
+    <div id="q8" style="display: none; width: 1000px;">
         <img src="img/gaikotu.png" alt="" style="height: 300px;">
         <h4>自分の体型は・・・</h4>
-        <button id="q_9_s" style="margin: 5px;">ガイコツレベル</button>
-        <button id="q_9_m" style="margin: 5px;">中肉中背</button>
-        <button id="q_9_l" style="margin: 5px;">マシュマロタイプ</button>
+        <button class="btn_option_#q9" value="6/1/3.11" style="margin: 5px;">ガイコツレベル</button>
+        <button class="btn_option_#q9" value="/1/2.4.7.10" style="margin: 5px;">中肉中背</button>
+        <button class="btn_option_#q9" value="/1/1.5.8.9" style="margin: 5px;">マシュマロタイプ</button>
     </div>
 
-    <div id="q_10" style="display: none;">
+    <div id="q9" style="display: none;">
         <h4>先見性があると思う</h4>
-        <button id="q_10_y">応</button>
-        <button id="q_10_n">否</button>
+        <button class="btn_option_#q10" value="7/1/1.5.10">応</button>
+        <button class="btn_option_#q10" value="/1/2.3.4.6.8.9.11">否</button>
     </div>
 
-    <div id="q_11" style="display: none;">
+    <div id="q10" style="display: none;">
         <h4>油っぽいものが好きだ</h4>
-        <button id="q_11_y">好き</button>
-        <button id="q_11_n">そうでもない</button>
+        <button class="btn_option_#q11" value="8/1/3.4.6.10">好き</button>
+        <button class="btn_option_#q11" value="/1/1.2.5.7.9.11">そうでもない</button>
     </div>
 
-    <div id="q_12" style="display: none;">
+    <div id="q11" style="display: none;">
         <h4>自分はエンターテイナーだ</h4>
-        <button id="q_12_y">そうとも！</button>
-        <button id="q_12_n">そんな気はしない</button>
+        <button class="btn_option_#q12" value="9/1/1.3.5.8.10.11">そうとも！</button>
+        <button class="btn_option_#q12" value="/1/2.4.6.7">そんな気はしない</button>
     </div>
 
-    <div id="q_13" style="display: none;">
+    <div id="q12" style="display: none;">
         <h4>難読漢字も割と読める</h4>
-        <button id="q_13_y">応</button>
-        <button id="q_13_n">否</button>
+        <button class="btn_option_#q13" value="10/1/1.5.7.8">応</button>
+        <button class="btn_option_#q13" value="/1/2.3.4.6.9.11">否</button>
     </div>
 
-    <div id="q_14" style="display: none;">
+    <div id="q13" style="display: none;">
         <h4>人付き合いは、どちらかというと</h4>
-        <button id="q_14_w">広く浅く</button>
-        <button id="q_14_d">狭く深く</button>
+        <button class="btn_option_#last" value="/1/1.3.5.7.9">広く浅く</button>
+        <button class="btn_option_#last" value="11/1/2.4.6.8.10">狭く深く</button>
     </div>
 
-    <!-- 結果コンポーネント -->
-    <div id="akaname" style="display: none;">
+    <!-- 以下、結果コンポーネント -->
+    <div id="result0" style="display: none;">
         <h5>あなたが転生するなら・・・</h5>
         <p>「垢舐め」です！</p>
         <img src="img/akaname_2.jpg" alt="" display="height: 200px">
@@ -289,9 +295,6 @@
             Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
         </a>
     </div>
-    
-    <!-- このファイル内のオブジェクトに、各コンポーネントが値として格納されている -->
-    <!-- <script src="dom.js"></script> -->
 
     <script src="index.js"></script>
 
