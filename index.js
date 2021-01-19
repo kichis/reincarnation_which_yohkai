@@ -62,9 +62,6 @@ const setPoint = (where) => {
     judge()
 
 }
-// function addPoint(/* ポイントを付与する妖怪のindex#が入ったArry = */ toWho, /*(int)*/point) {
-//     toWho.forEach(ele => { yokaiDatas[ele].point += point });
-// }
 
 // URLの#変化を感知 -> 処理
 window.addEventListener('hashchange', e => {
@@ -86,6 +83,84 @@ const toNextPage = (nowid, nextid) => {
     // }, 500);
 }    
 
+// ポイントを判定して結果の妖怪のindex#(@yokaiDatas)を返す
+
+const judge = () => {
+    const resultArry = yokaiDatas.map(x => x.point)
+    // const resultArry = [0, 1, 9, 14, 1, 2, 8, 13, 1, 10, 7, 8]
+    console.log(resultArry)
+    const [maxPoint, maxIndexArry] = calcMax_MaxIndexArry(resultArry)
+    let result
+
+    // MEMO: maxPointが70以上の場合、maxPointを保持している妖怪はアマビエである
+    if (maxPoint >= 71) {
+        // アマビエと同じ選択肢(「海」「貝」+１つ以上) -> アマビエ
+        result = 1;
+        
+    } else if (maxPoint == 70) {
+        // アマビエと同じ選択肢(「海」「貝」のみ) -> カッパか小豆洗いかポイントが大きい方 
+        if (resultArry[2] == resultArry[3]) {
+            // カッパと小豆洗いのポイントが一緒だった場合
+            result = whenMaxEqual([2, 3]);
+        } else {
+            result = resultArry[2] > resultArry[3] ? 2 : 3;
+        }
+        
+    } else if (70 > maxPoint && maxPoint >= 50) {
+        // (「海」 && !「貝」) -> ポイントが最大の海系妖怪
+        if (maxIndexArry.length > 1) {
+            // 最大ポイントが複数妖怪
+            result = whenMaxEqual(maxIndexArry)
+        } else {
+            result = maxIndexArry[0]
+        }
+
+    } else if (maxPoint < 50) { 
+        // 「山」 = 50未満 -> アマビエを候補から外す(アマビエのポイントを0にする) -> その他の妖怪で最大のポイントを保有している妖怪(max.15)
+        //  ※アマビエ以外の海系妖怪は選ばれる可能性がある
+
+        // HACK: 「最大ポイントがアマビエのみ」以外の場合は、resultIndexArryを作り直す必要はない。が、そこまで処理の条件分岐をするとif文地獄になるので全て下記の処理にまとめる。
+
+        // ExAm = except Amabie
+        const resultArryExAm = resultArry
+        resultArryExAm[1] = 0        
+        const maxIndexArryExAm = calcMax_MaxIndexArry(resultArryExAm)[1]
+        if (maxIndexArryExAm.length > 1) {
+            // 最大ポイントが複数妖怪
+            result = whenMaxEqual(maxIndexArryExAm)
+        } else {
+            result = maxIndexArryExAm[0]
+        }
+    }
+
+    return result
+
+    // 以下、ローカル関数
+
+    function calcMax_MaxIndexArry(/*対象の妖怪の最終ポイントが入った*/array){
+        // 最大ポイント
+        const max = Math.max(...array)
+        // 最大ポイントを保持している妖怪のindex#
+        let maxIndex = array.indexOf(max, 0)
+        let maxIndexArray = []
+        while (maxIndex >= 0) {
+            maxIndexArray.push(maxIndex)
+            maxIndex = array.indexOf(max, maxIndex+1)
+        }
+        return [max, maxIndexArray]
+    }
+
+    // ※海系・山系問わず、maxポイント複数の場合 -> maxポイントの妖怪の中からrandam関数で結果を出す 
+    // (この工程を経る場合のみ、隠しキャラ”一口おばけ”がでる可能性がある)
+    function whenMaxEqual(/*maxポイントの妖怪のindex#が入った*/arry){
+        // 一口妖怪を選択肢にいれる
+        arry.push(12)
+        // 例:arry内の妖怪が3体 -> omikuji = 0 || 1 || 2
+        const omikuji = Math.floor(Math.random() * arry.length)
+        // 結果の妖怪のindex#を返す
+        return arry[omikuji]
+    }
+}
 
 
 // !! ボタンクリック時のアニメーション !!
@@ -109,205 +184,30 @@ $(".btn_option_#q5").on("click", function () {
 })
 
 
-
-
-
-
-
-
-const calcFinalPoint = () => { 
-    
-    
-    
-}
-// ポイントを判定して結果の妖怪の(yokaiDatasの)index#を返す
-
-const judge = () => {
-    // const resultArry = yokaiDatas.map(x => x.point)
-    const resultArry = [0, 53, 52, 53, 1, 2, 3, 4, 5, 6, 7, 8]
-    console.log(resultArry)
-    
-    // 最大のポイント
-    const maxPoint = Math.max(...resultArry)
-    // 最大ポイントを保持しているindedx#ofresultArry
-    let maxIndexArry = []
-    let maxIndex = resultArry.indexOf(maxPoint, 0)
-    while (maxIndex >= 0) {
-        maxIndexArry.push(maxIndex)
-        maxIndex = resultArry.indexOf(maxPoint, maxIndex+1)
-    }
-    
-    // console.log(maxIndexArry)
-    
-    let result
-    let omikujiArry
-    
-    // MEMO: maxPointが70以上の場合、maxPointを保持している妖怪はアマビエである
-    if (maxPoint >= 71) {
-        // アマビエと同じ選択肢(「海」「貝」+１つ以上) -> アマビエ
-        return result = 1;
-        
-    } else if (maxPoint == 70) {
-        // アマビエと同じ選択肢(「海」「貝」のみ) -> カッパか小豆洗いかポイントが大きい方 
-        if (resultArry[2] == resultArry[3]) {
-            // カッパと小豆洗いのポイントが一緒だった場合
-            omikujiArry = [2, 3]
-            return result = whenMaxEqual(omikujiArry);
-        } else {
-            return result = resultArry[2] > resultArry[3] ? 2 : 3;
-        }
-        
-    } else if (70 > maxPoint && maxPoint >= 50) {
-        // (「海」 && !「貝」) -> ポイントが最大の海系妖怪
-        if (maxIndexArry.length > 1) {
-            // 最大ポイントが複数妖怪
-            return result = whenMaxEqual(maxIndexArry)
-        } else {
-            return result = maxIndexArry[0]
-        }
-    } else if (maxPoint < 50) { 
-        // 「山」50未満 -> 山系妖怪 -> アマビエを候補から外す(アマビエのポイントを0にする)
-        // ExAm = except Amabie
-        const resultArryExAm = resultArry.slice(1, 1, 0)
-
-        console.log(resultArryExAm)
-
-        // 最大のポイント
-        const maxPointExAm = Math.max(...resultArryExAm)
-        // 最大ポイントを保持しているindedx#ofresultArry
-        let maxIndexArryExAm = []
-        let maxIndexExAm = resultArryExAm.indexOf(maxPointExAm, 0)
-        while (maxIndexExAm >= 0) {
-            maxIndexArryExAm.push(maxIndexExAm)
-            maxIndexExAm = resultArryExAm.indexOf(maxPointExAm, maxIndexExAm + 1)
-        }
-
-        //  -> その他の妖怪で最大のポイントを保有している妖怪(max.15)
-        //  ※アマビエ以外の海系妖怪は選ばれる可能性がある
-        if (maxIndexArryExAm.length > 1) {
-            // 最大ポイントが複数妖怪
-            return result = whenMaxEqual(maxIndexArryExAm)
-        } else {
-            return result = maxIndexArryExAm[0]
-        }
-    }
-
-
-    const calcMaxItsindexarry = (array) => {
-        // 最大のポイント
-        const max = Math.max(...array)
-        // 最大ポイントを保持している妖怪のindex#(@resultArry)
-        let maxIndex = array.indexOf(max, 0)
-        let maxIndexArray = []
-        while (maxIndex >= 0) {
-            maxIndexArray.push(maxIndex)
-            maxIndex = array.indexOf(max, maxIndex+1)
-        }
-        return [max, maxIndexArray]
-    }
-
-
-    // ※海系・山系問わず、maxポイント複数の場合 -> maxポイントの妖怪の中からrandam関数で結果を出す 
-    // (この工程を経る場合のみ、隠しキャラ”一口おばけ”がでる可能性がある)
-    const whenMaxEqual = (/*maxポイントの妖怪のindex#が入った*/arry) => {
-        // 一口妖怪を選択肢にいれる
-        arry.push(12)
-        // 例:arry内の妖怪が3体 -> omikuji = 0 || 1 || 2
-        const omikuji = Math.floor(Math.random() * arry.length)
-        // 結果の妖怪のindex#を返す
-        return arry[omikuji]
-    }
-}
-
-
-// console.log(whenMaxEqual([0, 8, 9, 6, 10]))
-
-function checkZ() {
-    if (localStorage.getItem("z") == 1) { //一口おばけになるか
-        const num = Math.ceil(Math.random() * 10);
-        console.log(num);
-
-        if (num == 1) {
-            toNextPage(q14, hitoku);
-        } else {
-            // pass
-        }
-
-    } else { //一口おばけにならない
-        // pass
-    }
-    // console.log("hello");
-
-    // local storageのvalue = 妖怪のポイント
-    // const a = localStorage.getItem("a");
-    // const b = localStorage.getItem("b");
-    // const c = localStorage.getItem("c");
-    // const d = localStorage.getItem("d");
-    // const e = localStorage.getItem("e");
-    // const f = localStorage.getItem("f");
-    // const g = localStorage.getItem("g");
-    // const h = localStorage.getItem("h");
-    // const i = localStorage.getItem("i");
-    // const j = localStorage.getItem("j");
-    // const k = localStorage.getItem("k");
-
-    // const items = [a, b, c, d, e, f, g, h, i, j, k];
-    // console.log(items);
-    // console.log(localStorage.length);
-
-
-    // localstorageのkeyを配列化
-    // const keys = new Array;
-    // key();
-    // function key() {
-    //     for (let i = 0; i < localStorage.length; i++) {
-    //         const x = localStorage.key(i); //key名　取得
-    //         keys.push(x);
-    //     }
-    // }
-    // console.log(keys);
-
-    // maxの値をもつkeyを抽出
-    const max_point = keys.filter(function (value) {
-        return localStorage.getItem(value) == max;
-    })
-    console.log(max_point);
-
-    // maxの値をもつkeyが複数ある場合は、ランダム関数でindex番号を指定
-    // 一口お化けを出現させる
-    // console.log(max_point[num]);
-
-
     // 妖怪別のページに移動
-    if (max_point[num] == "a") {
-        toNextPage(q14, kappa);
-    } else if (max_point[num] == "b") {
-        toNextPage(q14, azuki);
-    } else if (max_point[num] == "c") {
-        toNextPage(q14, amabie);
-    } else if (max_point[num] == "d") {
-        toNextPage(q14, rokuro);
-    } else if (max_point[num] == "e") {
-        toNextPage(q14, zashiki);
-    } else if (max_point[num] == "f") {
-        toNextPage(q14, gasha);
-    } else if (max_point[num] == "g") {
-        toNextPage(q14, nue);
-    } else if (max_point[num] == "h") {
-        toNextPage(q14, tukumo);
-    } else if (max_point[num] == "i") {
-        toNextPage(q14, kudan);
-    } else if (max_point[num] == "j") {
-        toNextPage(q14, nekomata);
-    } else if (max_point[num] == "k") {
-        toNextPage(q14, bunpuku);
-    }
-
-
-
-
-}
-
+    // if (max_point[num] == "a") {
+    //     toNextPage(q14, kappa);
+    // } else if (max_point[num] == "b") {
+    //     toNextPage(q14, azuki);
+    // } else if (max_point[num] == "c") {
+    //     toNextPage(q14, amabie);
+    // } else if (max_point[num] == "d") {
+    //     toNextPage(q14, rokuro);
+    // } else if (max_point[num] == "e") {
+    //     toNextPage(q14, zashiki);
+    // } else if (max_point[num] == "f") {
+    //     toNextPage(q14, gasha);
+    // } else if (max_point[num] == "g") {
+    //     toNextPage(q14, nue);
+    // } else if (max_point[num] == "h") {
+    //     toNextPage(q14, tukumo);
+    // } else if (max_point[num] == "i") {
+    //     toNextPage(q14, kudan);
+    // } else if (max_point[num] == "j") {
+    //     toNextPage(q14, nekomata);
+    // } else if (max_point[num] == "k") {
+    //     toNextPage(q14, bunpuku);
+    // }
 
 
 //はじめに戻るボタン 
