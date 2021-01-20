@@ -7,6 +7,8 @@
 
 // !! 妖怪のid,名前,保有ポイントを保持するオブジェクト !!
 let yokaiDatas = []
+let logsYokaiDatas = [0]
+
 const yokaiArry = [/*0*/"あかなめ", /*1*/"アマビエ", /*2*/"カッパ", /*3*/"小豆洗い", /*4*/"ろくろ首", /*5*/"座敷童", /*6*/"ガシャドクロ", /*7*/"件", /*8*/"猫又", /*9*/"分服茶釜", /*10*/"鵺", /*11*/"付喪神", /*12*/"一口おばけ"]
 for (let i = 0; i < yokaiArry.length; i++) {
     let yokaiObj = {
@@ -17,6 +19,14 @@ for (let i = 0; i < yokaiArry.length; i++) {
     yokaiDatas.push(yokaiObj)
 }
 
+// その時点でのyokaiDatasを記録する(配列# = yokaiDatasが記録されたコンポーネントid)
+// 保存のタイミング例 : id="q4"に遷移するボタンが押された時に発火、id="q4"表示時点のyokaiDatasが保存される
+const logs = () => {
+    let tmp = JSON.stringify(yokaiDatas); // JSON文字列化
+    tmp = JSON.parse(tmp);
+    logsYokaiDatas.push(tmp)
+}
+
 
 // onclickで発火する関数は、ポイント付与をするsetPointとコンポーネント遷移に繋がるlocation.hashで機能を分ける
 // (戻るボタンなど、コンポーネント遷移するがポイント付与はしない場合が想定されるため)
@@ -25,8 +35,10 @@ for (let i = 0; i < yokaiArry.length; i++) {
 $("[class^='btn_option']").on("click", function () {
     // FIXME:この時点でsetPoint()実行後のポイントが付与されている。原因不明。
     setPoint(this)
+    logs()
     console.log("after setPoint yokaiDatas is {0}", yokaiDatas)
-
+    console.log("after setPoint logs is {0}", logsYokaiDatas)
+    
     let nextid;
     if ($(this).attr("class") == 'btn_option_#last') {
         // 最後の問題の選択肢を押したとき!!
@@ -37,14 +49,15 @@ $("[class^='btn_option']").on("click", function () {
         nextid = $(this).attr("class").split("#")[1];
     }
     location.hash = "#" + nextid
+
 });
 
 // ポイント付与
 const setPoint = (where) => {
     const arry = $(where).val().split("/");
     const featYokai = [arry[0]]
-    const quantityPoint = Number(arry[1])
     const toWho = arry[2].split(".")
+    const quantityPoint = Number(arry[1])
     if (featYokai[0] !== '') {
         featYokai.forEach(ele => { yokaiDatas[ele].point += 4 });
     }
@@ -72,31 +85,47 @@ const toNextPage = (nowid, nextid) => {
 }    
 
 //はじめに戻るボタン 
-$("#btn_reset").on("click", function () {
-    location.hash = ''
-    location.reload()
+$("#btn_reset").on("click", function () {  
+    location.reload();
 });
 
-// リロード時は常にハッシュタグをクリアにすることはできるか？
-// ->はじめに戻るボタンはreloadするだけでよくなる
-// ->#が残っている時にスタートから遷移するとスタートボタンが表示され続ける問題が解決する
+// リロードされた時、hashを消す(hashが残っている状態で始めるとスタートボタンが表示され続けるため)
+$(window).on('load', function (e) {
+    location.hash = '';
+});
+
+
+$("#btn_to_before").on("click", function () {
+    let hash = location.hash.replace('#q', '');
+    // 1つ前のコンポーネントid
+    hash -= 1;
+    // ポイントを上記hash時点の状態に戻す
+    let log = JSON.stringify(logsYokaiDatas[hash]); // JSON文字列化
+    log = JSON.parse(log);
+    yokaiDatas = log
+    console.log(yokaiDatas)
+    logsYokaiDatas.splice(hash-1)
+    console.log(logsYokaiDatas)
+    logs()
+    console.log(logsYokaiDatas)
+    
+    location.hash = "#q" + hash;
+    // location.reload();
+});
 // 前に戻るボタンの実装
 
 
 // ポイントを判定して結果の妖怪のindex#(@yokaiDatas)を返す
 const judge = () => {
     const resultArry = yokaiDatas.map(x => x.point)
-    // const resultArry = [0, 1, 9, 14, 1, 2, 8, 13, 1, 10, 7, 8]
-    console.log("resultArry is {0}", resultArry)
     const [maxPoint, maxIndexArry] = calcMax_MaxIndexArry(resultArry)
     let result
 
-    // MEMO: maxPointが70以上の場合、maxPointを保持している妖怪はアマビエである
     if (maxPoint >= 71) {
-        // アマビエと同じ選択肢(「海」「貝」+１つ以上) -> アマビエ
+        // アマビエと同じ選択肢(「海」「貝」+１つ以上) => アマビエ
         result = 1;
     } else if (maxPoint == 70) {
-        // アマビエと同じ選択肢(「海」「貝」のみ) -> カッパか小豆洗いかポイントが大きい方 
+        // アマビエと同じ選択肢(「海」「貝」のみ) => カッパか小豆洗いかポイントが大きい方 
         if (resultArry[2] == resultArry[3]) {
             // カッパと小豆洗いのポイントが一緒だった場合
             result = whenMaxEqual([2, 3]);
@@ -104,7 +133,7 @@ const judge = () => {
             result = resultArry[2] > resultArry[3] ? 2 : 3;
         }  
     } else if (70 > maxPoint && maxPoint >= 50) {
-        // (「海」 && !「貝」) -> ポイントが最大の海系妖怪
+        // (「海」 && !「貝」) => ポイントが最大の海系妖怪
         if (maxIndexArry.length > 1) {
             // 最大ポイントが複数妖怪
             result = whenMaxEqual(maxIndexArry)
@@ -112,12 +141,10 @@ const judge = () => {
             result = maxIndexArry[0]
         }
     } else if (maxPoint < 50) { 
-        // 「山」 = 50未満 -> アマビエを候補から外す(アマビエのポイントを0にする) -> その他の妖怪で最大のポイントを保有している妖怪(max.15)
-        //  ※アマビエ以外の海系妖怪は選ばれる可能性がある
-
-        // HACK: 「最大ポイントがアマビエのみ」以外の場合は、resultIndexArryを作り直す必要はない。が、そこまで処理の条件分岐をするとif文地獄になるので全て下記の処理にまとめる。
-
+        // (「山」) => (アマビエ以外で)ポイントが最大の海系妖怪
+        // HACK: 「最大ポイントがアマビエのみ」以外の場合は、resultIndexArryを作り直す必要はない。が、そこまで処理の条件分岐をするとif文地獄になるので全て下記の処理とする。
         const resultArryExAm = resultArry /* ExAm = except Amabie */
+        // アマビエを候補から外す
         resultArryExAm[1] = 0        
         const maxIndexArryExAm = calcMax_MaxIndexArry(resultArryExAm)[1]
         if (maxIndexArryExAm.length > 1) {
@@ -130,27 +157,25 @@ const judge = () => {
     return result
 
     // 以下、ローカル関数
-    function calcMax_MaxIndexArry(/*対象の妖怪の最終ポイントが入った*/array){
-        // 最大ポイント
+
+    function calcMax_MaxIndexArry(/*対象妖怪の最終ポイントが入った*/array){
         const max = Math.max(...array)
-        // 最大ポイントを保持している妖怪のindex#
         let maxIndex = array.indexOf(max, 0)
         let maxIndexArray = []
         while (maxIndex >= 0) {
             maxIndexArray.push(maxIndex)
             maxIndex = array.indexOf(max, maxIndex+1)
         }
+        // 引数の配列の、[最大ポイント, 最大ポイントを保有している妖怪のindex#]
         return [max, maxIndexArray]
     }
 
-    // ※海系・山系問わず、maxポイント複数の場合 -> maxポイントの妖怪の中からrandam関数で結果を出す 
-    // (この工程を経る場合のみ、隠しキャラ”一口おばけ”がでる可能性がある)
     function whenMaxEqual(/*maxポイントの妖怪のindex#が入った*/arry){
-        // 一口妖怪を選択肢にいれる
+        // この関数を使用する場合のみ、一口妖怪が選択肢に入る
         arry.push(12)
         // 例:arry内の妖怪が3体 -> omikuji = 0 || 1 || 2
         const omikuji = Math.floor(Math.random() * arry.length)
-        // 結果の妖怪のindex#を返す
+        // ランダムに選んだ妖怪のindex#を返す
         return arry[omikuji]
     }
 }

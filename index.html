@@ -18,12 +18,14 @@
 
     <!-- 表示エリア -->
     <div id="play_area">
-
+前の質問に戻るときは、戻るボタンを押してね！（ブラウザの戻るボタンは押さないでね！）
         <div id="q_area">
-            <button id="btn_start" onclick="location.href='#q1'">START!</button>
+            <button id="btn_start" onclick="location.href='#q1';logs();">START!</button>
         </div>
-
+        
+        <!-- q2-q13まで表示 -->
         <button id="btn_to_before">1つ前の画面に戻る</button>
+
         <button id="btn_reset">最初の画面に戻る</button>
     </div>
 
@@ -33,7 +35,7 @@
         <h4>お風呂の湯船に付いている垢を舐めるのが好き？</h4>
         <!-- メモ：<input type="button" value="ボタン">とも書ける -->
         <button onclick="location.href='#result0'" value="あかなめ">好き</button>
-        <button onclick="location.href='#q2'">嫌い</button>
+        <button onclick="location.href='#q2';logs();">嫌い</button>
 
         <img src="img/akaname_1.gif" alt="">
     </div>
