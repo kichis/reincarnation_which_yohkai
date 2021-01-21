@@ -3,16 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="style.css">
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 
 <!-- フォント再考 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet"> -->
+
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet"> -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+    <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
+        font-family: 'Sawarabi Mincho', sans-serif; -->
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
-    <script src="jquery-2.1.3.min.js"></script>
-
+    
     <title>転生したら○○○○だった件 | 何の妖怪？</title>
 </head>
 <body>
@@ -24,31 +51,45 @@
 
 <!-- 最後にreadmeチェック -->
 
-    <h1>『転生したら○○○○だった件』</h1>
+    <!-- bg-danger -->
+    <header class="row m-0 bg-danger">
+        <h1>『転生したら○○○○だった件』</h1>
+    </header>
+    
+    <main>
+        <!-- bg-primary -->
+        <div id="q_area" class="col-12 bg-primary">
+            <!-- 差し替えコンポーネント表示エリア -->
 
-    <!-- 表示エリア -->
-    <div id="play_area">
-前の質問に戻るときは、戻るボタンを押してね！（ブラウザの戻るボタンは押さないでね！）
-        <div id="q_area">
-            <button id="btn_start" onclick="location.href='#q1';logs();">START!</button>
+            <!--初期コンポーネント--><button id="btn_start" class="btn btn-outline-warning" onclick="location.href='#q1';logs();">START!</button>  
+                             
         </div>
-        
-        <button id="btn_reset">最初の画面に戻る</button>
+    </main>
 
+    <!-- bg-warning -->
+    <footer class="row m-0">
         <!-- q2-q13まで表示 -->
-        <button id="btn_to_before">1つ前の画面に戻る</button>
+        <button id="btn_to_before" class="btn btn-secondary"><i class="fas fa-hand-point-left fa-4x"></i><br><p>前に戻る</p></button>
+        <button id="btn_reset" class="btn btn-secondary"><i class="fas fa-home fa-4x"></i><p>はじめに戻る</p></button>
+        <p id="inst_text">前の質問に戻るときは「前に戻る」ボタンを押してね！<br><span>(ブラウザの戻るボタンを押すと当サイトを離れます)</span></p>
+    </footer>
 
-    </div>
 
     <!-- 以下、質問コンポーネント  -->
 
-    <div id="q1" style="display: none">
-        <h4>お風呂の湯船に付いている垢を舐めるのが好き？</h4>
-        <!-- メモ：<input type="button" value="ボタン">とも書ける -->
-        <button onclick="location.href='#result0'" value="あかなめ">好き</button>
-        <button onclick="location.href='#q2';logs();">嫌い</button>
-
-        <img src="img/akaname_1.gif" alt="">
+    <div id="q1" style="display: none; height: 100%;">
+        <div class="q-text row">
+            <h4>お風呂の湯船に付いている垢を<br>舐めるのが好き？</h4>
+        </div>
+        <div class="q-img">
+            <img src="img/akaname_1.gif" alt="">
+        </div>
+        <div class="q-btn row">
+            <!-- メモ：<input type="button" value="ボタン">とも書ける -->
+            <!-- btn-danger -->
+            <button class="btn col-5 btn-danger" onclick="location.href='#result0'" value="あかなめ">好き♡</button>
+            <button class="btn col-5 btn-danger" onclick="location.href='#q2';logs();">嫌い</button>
+        </div>   
     </div>
         
     <div id="q2" style="display: none;">
@@ -298,7 +339,8 @@
             Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
         </a>
     </div>
-
+    
+    <script src="jquery-2.1.3.min.js"></script>
     <script src="index.js"></script>
 
 </body>
