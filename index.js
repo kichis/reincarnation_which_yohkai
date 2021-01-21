@@ -1,14 +1,5 @@
-// 製作メモ:
-// １、2020verはlocalStorageを使用してポイントを保持したが、今になってみるとlocalStorageを使用する必要性が感じられなかったので、オブジェクトとして値を保持する
-// ２、hashchangeを使わずとも、コンポーネント遷移は、onclick->toNextPage機能(次のコンポーネントが引数)で実装可能。
-// hashchangeを実装してみたかったことと、(デバッグ上)該当ボタンを押さないとそのコンポーネントを表示できないのは不便なため、hashから表示コンポーネントを操作できるようにした。
-
-// 「各コンポーネントのDOMをオブジェクトの値として格納＆別jsファイルに保存、必要に応じて動的にレンダリングする」という仕様を試してみたが、"上記のDOM要素のonclickイベントを動作させるには、htmlタグ内に記載する必要がある(動的にレンダリングしているせいか？タグ外部に記載したonclickイベントは動作しない)"かつ、"数多くのボタンタグ内に類似のonclickイベントを記載するのは冗長"であったため、妙なことはせず普通にhtmlでdomを記載することにした。
-
 // !! 妖怪のid,名前,保有ポイントを保持するオブジェクト !!
 let yokaiDatas = []
-let logsYokaiDatas = [0]
-
 const yokaiArry = [/*0*/"あかなめ", /*1*/"アマビエ", /*2*/"カッパ", /*3*/"小豆洗い", /*4*/"ろくろ首", /*5*/"座敷童", /*6*/"ガシャドクロ", /*7*/"件", /*8*/"猫又", /*9*/"分服茶釜", /*10*/"鵺", /*11*/"付喪神", /*12*/"一口おばけ"]
 for (let i = 0; i < yokaiArry.length; i++) {
     let yokaiObj = {
@@ -18,83 +9,23 @@ for (let i = 0; i < yokaiArry.length; i++) {
     }
     yokaiDatas.push(yokaiObj)
 }
-
-// その時点でのyokaiDatasを記録する(配列# = yokaiDatasが記録されたコンポーネントid)
-// 保存のタイミング例 : id="q4"に遷移するボタンが押された時に発火、id="q4"表示時点のyokaiDatasが保存される
-const logs = () => {
-    let tmp = JSON.stringify(yokaiDatas); // JSON文字列化
-    tmp = JSON.parse(tmp);
-    logsYokaiDatas.push(tmp)
-}
+// 各質問時点のyokaiDatasを保存するオブジェクト (index# = 質問コンポーネントid)
+// id = q0 はないので、index# = [0]に0を入れておく
+let logsYokaiDatas = [0]
 
 
-// onclickで発火する関数は、ポイント付与をするsetPointとコンポーネント遷移に繋がるlocation.hashで機能を分ける
-// (戻るボタンなど、コンポーネント遷移するがポイント付与はしない場合が想定されるため)
-
-// ※ポイント付与を伴わない、btn_startとq1はこのイベントリスナーに引っかからない(hashchange処理はhtmlタグ内で指示)
-$("[class^='btn_option']").on("click", function () {
-    // FIXME:この時点でsetPoint()実行後のポイントが付与されている。原因不明。
-    setPoint(this)
-    logs()
-    console.log("after setPoint yokaiDatas is {0}", yokaiDatas)
-    console.log("after setPoint logs is {0}", logsYokaiDatas)
-    
-    let nextid;
-    if ($(this).attr("class") == 'btn_option_#last') {
-        // 最後の問題の選択肢を押したとき!!
-        let num = judge()
-        nextid = "result" + num
-    } else { 
-        // 最後以外の問題の選択肢を押したとき
-        nextid = $(this).attr("class").split("#")[1];
-    }
-    location.hash = "#" + nextid
-
-});
-
-// ポイント付与
-const setPoint = (where) => {
-    const arry = $(where).val().split("/");
-    const featYokai = [arry[0]]
-    const toWho = arry[2].split(".")
-    const quantityPoint = Number(arry[1])
-    if (featYokai[0] !== '') {
-        featYokai.forEach(ele => { yokaiDatas[ele].point += 4 });
-    }
-    toWho.forEach(ele => { yokaiDatas[ele].point += quantityPoint });
-}
-
-// URLの#変化を感知 -> 処理
-window.addEventListener('hashchange', e => {
-    const oldURL = e.oldURL;
-    // hash名がコンポーネントのidを表す
-    const oldHash = oldURL.split("#")[1] || 'btn_start'
-    const newHash = location.hash.replace(/^#/, '') || 'btn_start'
-    // この時点では、hashは変更されているがコンポーネントは未変更である。よって、変数名(hash)とtoNextPageの引数名の対応関係が不自然になる。
-    toNextPage(/*nowコンポーネントid*/oldHash, /*nextコンポーネントid*/newHash);
-}, false);
-
-// ページ遷移 (現在のコンポーネントを非表示＆指定したコンポーネントを表示)
-const toNextPage = (nowid, nextid) => {
-    // setTimeout(function () {
-    $('#' + nowid).hide();
-    var next = document.getElementById(nextid);
-    $("#q_area").prepend(next);
-    next.style.display = "";
-    // }, 500);
-}    
-
-//はじめに戻るボタン 
-$("#btn_reset").on("click", function () {  
+// はじめに戻るボタン 
+$("#btn_reset").on("click", function () {
     location.reload();
 });
 
-// リロードされた時、hashを消す(hashが残っている状態で始めるとスタートボタンが表示され続けるため)
+// リロードされた時、hashを消す
+// ※hashが残っている状態で始めるとスタートボタンが表示され続けるため
 $(window).on('load', function (e) {
     location.hash = '';
 });
 
-
+// 1つ前の質問ページに戻る
 $("#btn_to_before").on("click", function () {
     let hash = location.hash.replace('#q', '');
     // 1つ前のコンポーネントid
@@ -103,17 +34,58 @@ $("#btn_to_before").on("click", function () {
     let log = JSON.stringify(logsYokaiDatas[hash]); // JSON文字列化
     log = JSON.parse(log);
     yokaiDatas = log
-    console.log(yokaiDatas)
-    logsYokaiDatas.splice(hash-1)
-    console.log(logsYokaiDatas)
-    logs()
-    console.log(logsYokaiDatas)
-    
+    logsYokaiDatas.splice(hash+1)
     location.hash = "#q" + hash;
-    // location.reload();
 });
-// 前に戻るボタンの実装
 
+// ※ポイント付与を伴わない、{#btn_startとq1の回答ボタンを押した場合}はこのイベントリスナーに引っかからない(htmlタグ内に記述)
+$("[class^='btn_option']").on("click", function () {
+    // FIXME:setPoint()実行前にsetPoint()実行後のポイントが付与されている。原因不明。
+    setPoint(this)
+    logs()
+    let nextid;
+    if ($(this).attr("class") == 'btn_option_#last') {
+        // 最後の問題の選択肢を押したとき!!
+        let num = judge()
+        nextid = "result" + num
+    } else {
+        // 最後以外の問題の選択肢を押したとき
+        nextid = $(this).attr("class").split("#")[1];
+    }
+    location.hash = "#" + nextid
+});
+
+// ポイント付与
+const setPoint = (where) => {
+    const arry = $(where).val().split("/");
+    const featYokai = [arry[0]]
+    const quantityPoint = Number(arry[1])
+    const toWho = arry[2].split(".")
+    if (featYokai[0] !== '') {
+        featYokai.forEach(ele => { yokaiDatas[ele].point += 4 });
+    }
+    toWho.forEach(ele => { yokaiDatas[ele].point += quantityPoint });
+}
+
+// その時点でのyokaiDatasをlogsYokaiDatasに保存する
+// 保存のタイミング例 : id="q4"に遷移するボタンが押された時に発火、id="q4"表示時点のyokaiDatasが保存される
+const logs = () => {
+    let tmp = JSON.stringify(yokaiDatas); // JSON文字列化
+    tmp = JSON.parse(tmp);
+    logsYokaiDatas.push(tmp)
+}
+
+// URLのhash変化を感知 -> 処理
+window.addEventListener('hashchange', e => {
+    const oldURL = e.oldURL;
+    // hash名がコンポーネントのidを表す
+    const oldHash = oldURL.split("#")[1] || 'btn_start'
+    const newHash = location.hash.replace(/^#/, '') || 'btn_start'
+    $('#' + oldHash).hide();
+    var next = document.getElementById(newHash);
+    $("#q_area").prepend(next);
+    next.style.display = "";
+}, false);
 
 // ポイントを判定して結果の妖怪のindex#(@yokaiDatas)を返す
 const judge = () => {
@@ -173,12 +145,21 @@ const judge = () => {
     function whenMaxEqual(/*maxポイントの妖怪のindex#が入った*/arry){
         // この関数を使用する場合のみ、一口妖怪が選択肢に入る
         arry.push(12)
-        // 例:arry内の妖怪が3体 -> omikuji = 0 || 1 || 2
+        // 例:arry内の妖怪が3体 -> omikuji == 0 || 1 || 2
         const omikuji = Math.floor(Math.random() * arry.length)
         // ランダムに選んだ妖怪のindex#を返す
         return arry[omikuji]
     }
 }
+// ページ遷移 (現在のコンポーネントを非表示＆指定したコンポーネントを表示)
+// const toNextPage = (nowid, nextid) => {
+//     // setTimeout(function () {
+//     $('#' + nowid).hide();
+//     var next = document.getElementById(nextid);
+//     $("#q_area").prepend(next);
+//     next.style.display = "";
+//     // }, 500);
+// }    
 
 
 // !! ボタンクリック時のアニメーション !!
