@@ -85,6 +85,18 @@ window.addEventListener('hashchange', e => {
     var next = document.getElementById(newHash);
     $("#q_area").prepend(next);
     next.style.display = "";
+    // 「はじめに戻る」ボタンの表示管理
+    if ($("#btn_reset").css("visibility", "") && newHash != 'btn_start') {
+        $("#btn_reset").css("visibility", "visible");
+    }
+    // 前に戻るボタンと注意書きの表示管理
+    if ($("#btn_to_before, #inst_text").css("visibility", "") && /q[2-9]|1[0-3]/.test(newHash)) {
+        // 表示する場合
+        $("#btn_to_before, #inst_text").css("visibility", "visible");
+    } else if ($("#btn_to_before, #inst_text").css("visibility", "visible") && !/q[2-9]|1[0-3]/.test(newHash)) { 
+        // 非表示にする場合
+        $("#btn_to_before, #inst_text").css("visibility", "");
+    }
 }, false);
 
 // ポイントを判定して結果の妖怪のindex#(@yokaiDatas)を返す

@@ -74,9 +74,11 @@ footer{
 }
 #btn_to_before{
     margin-left: 5%;
+    visibility: hidden;
 }
 #btn_reset{
     margin-right: 5%;
+    visibility: hidden;
 }
 #btn_to_before p, #btn_reset p{
     font-size: 1.5rem;
@@ -87,6 +89,7 @@ footer{
     text-align: center;
     margin: auto auto;
     padding: 3% 2%;
+    visibility: hidden;
 }
 #inst_text span{
     font-size: 1.5rem;
