@@ -10,6 +10,7 @@ html {
 body{
     width: 100%;
     font-size: 1.4em; /* -> 14px; */
+    font-family: 'Noto Sans JP', sans-serif;
 }
 
 
@@ -41,32 +42,6 @@ main{
     padding: 10% 10%;
 }
 
-.q-text{
-    height: 20%;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Noto Sans JP', sans-serif;
-    
-}
-
-.q-img{
-    height: 50%;
-}
-.q-img img{
-    width: 100%;
-    height: 100%;
-}
-
-.q-btn{
-    height: 30%;
-    justify-content: space-around;
-    align-items:center;
-    margin: 0;
-}
-.q-btn button{
-    height: 35%;
-}
-
 
 footer{
     height: 20vh;
@@ -95,46 +70,56 @@ footer{
     font-size: 1.5rem;
 }
 
-/* #btn_start{
-    font-size: 1rem;
-    font-weight: normal;
-    color: burlywood;
-    background-color: blueviolet;
-    border: solid 1px black;
-    border-radius: 5px;
-    height: 50px;
-    width: 200px;
-
-} */
-/* 
-button{
-    font-size: 1rem;
-    font-weight: bolder;
-    color: ghostwhite;
-    border-radius: -10px;
-    background-color: darkslategrey;
-    height: 45px;
-    padding-left: 20px;
-    padding-right: 20px;
-    margin: 30px;
-} */
-/* #q_1{
-   
-} */
-
-/* #q_1 img{
-    text-align: start;
-} */
-/* q1 */
-#q_1_y:hover, #q_2_m:hover, #q_3_3:hover, #q_4_n:hover, #q_5_y:hover, #q_6_y:hover, #q_7_y:hover, #q_8_y:hover, #q_10_y:hover, #q_11_y:hover, #q_12_y:hover, #q_13_y:hover{
-    color: deeppink;
+/* 質問コンポーネント共通 */
+#q1, #q2, #q3, #q4, #q5, #q6, #q7, #q8, #q9, #q10, #q11, #q12, #q13{
+    height: 100%;
 }
 
-#q_1_n:hover, #q_2_s:hover, #q_3_4:hover, #q_4_y:hover, #q_5_n:hover, #q_6_n:hover, #q_7_n:hover, #q_8_n:hover, #q_9_s:hover, #q_10_n:hover, #q_11_n:hover, #q_12_n:hover, #q_13_n:hover{
-    color:skyblue;
+.q_text{
+    height: 20%;
+    justify-content: center;
+    align-items: center;    
+}
+.q_img{
+    height: 50%;
+}
+.q_img img{
+    /* width: 100%; */
+    height: 100%;
 }
 
-#q_3_1:hover, #q_14_d{
+.q_btn{
+    height: 30%;
+    justify-content: space-around;
+    align-items:center;
+    margin: 0;
+}
+.q_btn button{
+    height: 35%;
+    font-size: 2rem;
+    border: 1px solid black;
+}
+
+/* 質問コンポーネント 独自スタイル */
+#q1 .q_btn button:first-child{
+    font-family: 'Yusei Magic', sans-serif;
+    color:white;
+    background-color: pink;
+    border: 1px solid rgb(255, 139, 139);
+}
+
+#q2 .q_img{
+    width: 100%;
+    justify-content: center;
+}
+
+
+
+
+
+
+
+/* #q_3_1:hover, #q_14_d{
     color: brown;
 }
 
@@ -148,7 +133,7 @@ button{
 
 #q_8_n:hover, #q_9_m:hover{
     color: gray;
-}
+} */
 
 a{
     text-decoration: none;
@@ -156,7 +141,4 @@ a{
     padding: 5px;
 }
 
-#akaname img{
-    height: 300px;
-}
 

@@ -177,22 +177,22 @@ const judge = () => {
 // !! ボタンクリック時のアニメーション !!
 
 // start
-$("#btn_start").on("click", function () {
-    $("#btn_start").css("width", "220px"); //効果
-    $("#btn_start").css("font-family", "'Noto Serif JP', serif"); //効果
-    $("#btn_start").css("color", "white"); //効果
-    $("#btn_start").css("border", "none"); //効果
-    // toNextPage(btn_start, q1);
-})
+// $("#btn_start").on("click", function () {
+//     $("#btn_start").css("width", "220px"); //効果
+//     $("#btn_start").css("font-family", "'Noto Serif JP', serif"); //効果
+//     $("#btn_start").css("color", "white"); //効果
+//     $("#btn_start").css("border", "none"); //効果
+//     // toNextPage(btn_start, q1);
+// })
 
 // q5
-$(".btn_option_#q5").on("click", function () {
-    setTimeout(function () {
-        const se1 = $('#hanauta');
-        se1[0].currentTime = 0;
-        se1[0].play();
-    }, 500);
-})
+// $(".btn_option_#q5").on("click", function () {
+//     setTimeout(function () {
+//         const se1 = $('#hanauta');
+//         se1[0].currentTime = 0;
+//         se1[0].play();
+//     }, 500);
+// })
 
 
 

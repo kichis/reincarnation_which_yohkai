@@ -35,8 +35,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
         font-family: 'Sawarabi Mincho', sans-serif; -->
 
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
     
@@ -57,8 +56,7 @@
     </header>
     
     <main>
-        <!-- bg-primary -->
-        <div id="q_area" class="col-12 bg-primary">
+        <div id="q_area" class="col-12">
             <!-- 差し替えコンポーネント表示エリア -->
 
             <!--初期コンポーネント--><button id="btn_start" class="btn btn-outline-warning" onclick="location.href='#q1';logs();">START!</button>  
@@ -66,9 +64,7 @@
         </div>
     </main>
 
-    <!-- bg-warning -->
     <footer class="row m-0">
-        <!-- q2-q13まで表示 -->
         <button id="btn_to_before" class="btn btn-secondary"><i class="fas fa-hand-point-left fa-4x"></i><br><p>前に戻る</p></button>
         <button id="btn_reset" class="btn btn-secondary"><i class="fas fa-home fa-4x"></i><p>はじめに戻る</p></button>
         <p id="inst_text">前の質問に戻るときは「前に戻る」ボタンを押してね！<br><span>(ブラウザの戻るボタンを押すと当サイトを離れます)</span></p>
@@ -77,30 +73,37 @@
 
     <!-- 以下、質問コンポーネント  -->
 
-    <div id="q1" style="display: none; height: 100%;">
-        <div class="q-text row">
-            <h4>お風呂の湯船に付いている垢を<br>舐めるのが好き？</h4>
+    <div id="q1" style="display: none;"> <!-- "display:none" : style.cssに記述するとJS操作の"display:block"が打ち消されてしまうためこちらに記述 -->
+        <div class="q_text row">
+            <h2>お風呂の湯船に付いている垢を<br>舐めるのが好き？</h2>
         </div>
-        <div class="q-img">
-            <img src="img/akaname_1.gif" alt="">
+        <div class="q_img">
+            <img src="img/furooke_kabi_pink.png" alt="bath">
         </div>
-        <div class="q-btn row">
+        <div class="q_btn row">
             <!-- メモ：<input type="button" value="ボタン">とも書ける -->
-            <!-- btn-danger -->
-            <button class="btn col-5 btn-danger" onclick="location.href='#result0'" value="あかなめ">好き♡</button>
-            <button class="btn col-5 btn-danger" onclick="location.href='#q2';logs();">嫌い</button>
+            <button class="btn col-5" onclick="location.href='#result0'">好き♡</button>
+            <button class="btn col-5" onclick="location.href='#q2';logs();">嫌い</button>
         </div>   
     </div>
         
     <div id="q2" style="display: none;">
-        <h4 style="margin-top: 150px;">どちらかというと好きなのは・・</h4>
+        <div class="q_text row">
+            <h2>どちらかというと好きなのは・・</h2>
+        </div>
+        <div class="q_img row m-0">
+            <img src="img/ocean_kyodai_seibutsu.png" width="50%" alt="sea">
+            <img src="img/jiko_kuma_sougu.png" width="50%" alt="mountain">
+        </div>
+        <div class="q_btn row">
+            <!-- valueで渡す値 = ポイント付与に関する値 = (質問の担当妖怪のindex#)/付与するポイント数/付与する妖怪のindex# -->
+            <!-- class末尾の# =  遷移先のコンポーネントのid (URLの#をこの値に変更 -> 変更を感知してコンポーネント切り替え) -->
+            <button class="btn_option_#q3 btn col-5" value="/50/1.2.3">海</button>
+            <button class="btn_option_#q3 btn col-5" value="/1/4.5.6.7.8.9.10.11">山</button>
+        </div>
         
-        <!-- valueで渡す値 = ポイント付与に関する値 = (質問の担当妖怪のindex#)/付与するポイント数/付与する妖怪のindex# -->
-        <!-- class末尾の# =  遷移先のコンポーネントのid (URLの#をこの値に変更 -> 変更を感知してコンポーネント切り替え) -->
-        <button class="btn_option_#q3" value="/50/1.2.3">海</button>
-        <button class="btn_option_#q3" value="/1/4.5.6.7.8.9.10.11">山</button>
 
-        <img src="img/umi.jpg" alt="">
+
     </div>
 
      <div id="q3" style="display: none; background-image:url(img/kai.jpeg);">
@@ -157,36 +160,56 @@
         <button class="btn_option_#q9" value="6/1/3.11" style="margin: 5px;">ガイコツレベル</button>
         <button class="btn_option_#q9" value="/1/2.4.7.10" style="margin: 5px;">中肉中背</button>
         <button class="btn_option_#q9" value="/1/1.5.8.9" style="margin: 5px;">マシュマロタイプ</button>
+                <div class="q_img">
+                    <img src="img/body_man_soushin.png" alt="bath">
+                    <img src="img/body_man_normal.png" alt="bath">
+                    <img src="img/body_man_himan.png" alt="bath">
+                </div>
     </div>
 
     <div id="q9" style="display: none;">
         <h4>先見性があると思う</h4>
         <button class="btn_option_#q10" value="7/1/1.5.10">応</button>
         <button class="btn_option_#q10" value="/1/2.3.4.6.8.9.11">否</button>
+                <div class="q_img">
+                    <img src="img/job_uranaishi.png" alt="bath">
+                </div>
     </div>
 
     <div id="q10" style="display: none;">
         <h4>油っぽいものが好きだ</h4>
         <button class="btn_option_#q11" value="8/1/3.4.6.10">好き</button>
         <button class="btn_option_#q11" value="/1/1.2.5.7.9.11">そうでもない</button>
+                <div class="q_img">
+                    <img src="img/food_tonkatsu.png" alt="bath">
+                </div>
     </div>
 
     <div id="q11" style="display: none;">
         <h4>自分はエンターテイナーだ</h4>
         <button class="btn_option_#q12" value="9/1/1.3.5.8.10.11">そうとも！</button>
         <button class="btn_option_#q12" value="/1/2.4.6.7">そんな気はしない</button>
+                <div class="q_img">
+                    <img src="img/idol_2_5jigen.png" alt="bath">
+                </div>
     </div>
 
     <div id="q12" style="display: none;">
         <h4>難読漢字も割と読める</h4>
         <button class="btn_option_#q13" value="10/1/1.5.7.8">応</button>
         <button class="btn_option_#q13" value="/1/2.3.4.6.9.11">否</button>
+                <div class="q_img">
+                    <p>彳む</p>
+                </div>
     </div>
 
     <div id="q13" style="display: none;">
         <h4>人付き合いは、どちらかというと</h4>
         <button class="btn_option_#last" value="/1/1.3.5.7.9">広く浅く</button>
         <button class="btn_option_#last" value="11/1/2.4.6.8.10">狭く深く</button>
+                <div class="q_img">
+                    <img src="img/akusyu_uchuujin.png" alt="bath">
+                </div>
     </div>
 
     <!-- 以下、結果コンポーネント -->
