@@ -47,7 +47,7 @@
 <!-- モバイルフレンドリー -->
 <!-- ライセンスに引っかからないようながぞうに変更 -->
 <!-- 進捗バー -->
-
+<!-- 戻るボタン対策 -->
 <!-- 最後にreadmeチェック -->
 
     <!-- bg-danger -->
@@ -65,22 +65,23 @@
     </main>
 
     <footer class="row m-0">
-        <button id="btn_to_before" class="btn btn-secondary"><i class="fas fa-hand-point-left fa-4x"></i><br><p>前に戻る</p></button>
-        <button id="btn_reset" class="btn btn-secondary"><i class="fas fa-home fa-4x"></i><p>はじめに戻る</p></button>
-        <p id="inst_text">前の質問に戻るときは「前に戻る」ボタンを押してね！<br><span>(ブラウザの戻るボタンを押すと当サイトを離れます)</span></p>
+        <button id="btn_to_before" class="btn btn-secondary"><i class="fas fa-hand-point-left fa-3x"></i><br><p>前に戻る</p></button>
+        <button id="btn_reset" class="btn btn-secondary"><i class="fas fa-home fa-3x"></i><p>はじめに戻る</p></button>
+        <p id="inst_text">前の質問に戻るときは「前に戻る」ボタンを押してね！<br>(ブラウザの戻るボタンを押すと当サイトを離れます)</p>
     </footer>
 
 
     <!-- 以下、質問コンポーネント  -->
 
     <div id="q1" style="display: none;"> <!-- "display:none" : style.cssに記述するとJS操作の"display:block"が打ち消されてしまうためこちらに記述 -->
-        <div class="q_text row">
+        <h3 class="counter">(&nbsp;1&nbsp;/&nbsp;13問&nbsp;)</h3>
+        <div class="q_text row m-0">
             <h2>お風呂の湯船に付いている垢を<br>舐めるのが好き？</h2>
         </div>
-        <div class="q_img">
+        <div class="q_img row m-0">
             <img src="img/furooke_kabi_pink.png" alt="bath">
         </div>
-        <div class="q_btn row">
+        <div class="q_btn row m-0">
             <!-- メモ：<input type="button" value="ボタン">とも書ける -->
             <button class="btn col-5" onclick="location.href='#result0'">好き♡</button>
             <button class="btn col-5" onclick="location.href='#q2';logs();">嫌い</button>
@@ -88,14 +89,15 @@
     </div>
         
     <div id="q2" style="display: none;">
-        <div class="q_text row">
+        <h3 class="counter">(&nbsp;2&nbsp;/&nbsp;13問&nbsp;)</h3>
+        <div class="q_text row m-0">
             <h2>どちらかというと好きなのは・・</h2>
         </div>
         <div class="q_img row m-0">
             <img src="img/ocean_kyodai_seibutsu.png" width="50%" alt="sea">
             <img src="img/jiko_kuma_sougu.png" width="50%" alt="mountain">
         </div>
-        <div class="q_btn row">
+        <div class="q_btn row m-0">
             <!-- valueで渡す値 = ポイント付与に関する値 = (質問の担当妖怪のindex#)/付与するポイント数/付与する妖怪のindex# -->
             <!-- class末尾の# =  遷移先のコンポーネントのid (URLの#をこの値に変更 -> 変更を感知してコンポーネント切り替え) -->
             <button class="btn_option_#q3# btn col-5" value="/50/1.2.3">海</button>
@@ -104,13 +106,14 @@
     </div>
 
      <div id="q3" style="display: none;">
-        <div class="q_text row">
+        <h3 class="counter">(&nbsp;3&nbsp;/&nbsp;13問&nbsp;)</h3>
+        <div class="q_text row m-0">
             <h2>生まれ変わるとしたら・・・</h2>
         </div>
-        <div class="q_img row">
+        <div class="q_img row m-0">
             <img src="img/ome.jpg" alt="rebirth">
         </div>
-        <div class="q_btn row">
+        <div class="q_btn row m-0">
             <button class="btn_option_#q4# btn col-5" value="/1/3.4.5">人間</button>
             <button class="btn_option_#q4# btn col-5" value="/20/1">貝</button>
             <button class="btn_option_#q4# btn col-5 btn-info" id="q3_btn_3" value="/1/6.7.10">それ以外(かっこいい系)</button>
@@ -119,32 +122,32 @@
     </div>
 
     <div id="q4" style="display: none;">
-        <h4>将来、ハゲないか心配。もしくはすでに。</h4>
-        <button class="btn_option_#q5" value="2/1/3.6.7.10">うむ・・</button>
-        <button class="btn_option_#q5" value="/1/1.4.5.8.9.11">否</button><br>
-<div class="q_img">
-
-    <img src="img/bird_condor.png" style="margin-top: 100px; margin-right: 100px;" alt="">
-</div>
+        <h3 class="counter">(&nbsp;4&nbsp;/&nbsp;13問&nbsp;)</h3>
+        <div class="q_text row m-0">
+            <h2>将来、ハゲないか心配。 <br>もしくはすでに。。</h2>
+        </div>
+        <div class="q_img row m-0">
+            <img src="img/bird_condor.png" alt="condor">
+        </div>
+        <div class="q_btn row m-0">
+            <button class="btn_option_#q5# btn col-5" value="2/1/3.6.7.10">うむ・・</button>
+            <button class="btn_option_#q5# btn col-5" value="/1/1.4.5.8.9.11">No problem !</button>
+        </div>
     </div> 
 
-    <div id="q5" style="display: none; margin-top: 400px;">
-        <h4>ふとした時に鼻歌を歌ってしまう</h4>
-        <button class="btn_option_#q6" value="3/1/5.6.8.9.10">♪</button>
-        <button class="btn_option_#q6" value="/1/1.2.4.7.11">否</button>
-                <div class="q_img">
-                    <img src="img/onepiece09_brook.png" alt="bath">
-                </div>
-        <audio id="hanauta" preload="auto" src="sound/hanauta.mp3#t=0,4.0" type="audio/mp3" autoplay></audio>
+    <div id="q5" style="display: none;">
+        <h3 class="counter">(&nbsp;5&nbsp;/&nbsp;13問&nbsp;)</h3>
+        <div class="q_text row m-0">
+            <h2> ふとした時に鼻歌を歌ってしまう♪</h2>
+        </div>
+        <div class="q_img row m-0">
+            <img src="img/onepiece09_brook.png" alt="hanauta">
+        </div>
+        <div class="q_btn row m-0">
+            <button class="btn_option_#q6# btn col-5" value="3/1/5.6.8.9.10">♪</button>
+            <button class="btn_option_#q6# btn col-5" value="/1/1.2.4.7.11">（・×・）</button>
+        </div>
     </div>
-
-    <!-- <div id="q6" style="display: none;padding-top: 100px;">
-        <img src="img/urayama.png" alt="">
-
-        <h4>ついつい人が持っている物の方が良さそうに見えてしまう</h4>
-        <button id="q_6_y">そう思う</button>
-        <button id="q_6_n">否</button>
-    </div> -->
 
     <div id="q6" style="display: none;">
         <h4>自分の外見的チャームポイントをすぐに言える</h4>
