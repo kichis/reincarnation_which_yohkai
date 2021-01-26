@@ -150,6 +150,15 @@ footer{
     border: 4px solid black;
     padding-top: 0.2%;
 }
+#q11_btn_1{
+    color: white;
+    background-color: gold;
+    border: 3px solid #ffec44;
+}
+#q11_btn_2{
+    font-size: 1.7em;
+
+}
 
 
 

@@ -194,6 +194,17 @@ const judge = () => {
 //     }, 500);
 // })
 
+// q11コンポーネントのボタンの点滅
+const styleA = { 'color': 'blue', 'background- color': '#ffec44', 'border': '3px dashed gold'}
+const styleB = { 'color': 'white', 'background- color': 'gold', 'border': '3px solid #ffec44'}
+$(function () {
+    setInterval(function () {
+        $('#q11_btn_1').css(styleA);
+        setTimeout(function () {
+            $('#q11_btn_1').css(styleB);
+        }, 500);
+    }, 1000);
+});
 
 
 
