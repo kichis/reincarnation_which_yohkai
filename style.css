@@ -82,6 +82,8 @@ footer{
 }
 .q_img{
     height: 50%;
+    justify-content: center;
+
 }
 .q_img img{
     /* width: 100%; */
@@ -110,12 +112,17 @@ footer{
 
 #q2 .q_img{
     width: 100%;
-    justify-content: center;
 }
 
-
-
-
+#q3_btn_3, #q3_btn_4{
+    font-size: 1.2rem;
+}
+#q3_btn_3{
+    border: none;
+}
+#q3_btn_4{
+    border: 2px dashed orange;
+}
 
 
 

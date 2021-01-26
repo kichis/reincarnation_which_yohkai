@@ -98,28 +98,34 @@
         <div class="q_btn row">
             <!-- valueで渡す値 = ポイント付与に関する値 = (質問の担当妖怪のindex#)/付与するポイント数/付与する妖怪のindex# -->
             <!-- class末尾の# =  遷移先のコンポーネントのid (URLの#をこの値に変更 -> 変更を感知してコンポーネント切り替え) -->
-            <button class="btn_option_#q3 btn col-5" value="/50/1.2.3">海</button>
-            <button class="btn_option_#q3 btn col-5" value="/1/4.5.6.7.8.9.10.11">山</button>
+            <button class="btn_option_#q3# btn col-5" value="/50/1.2.3">海</button>
+            <button class="btn_option_#q3# btn col-5" value="/1/4.5.6.7.8.9.10.11">山</button>
         </div>
-        
-
-
     </div>
 
-     <div id="q3" style="display: none; background-image:url(img/kai.jpeg);">
-        <h4 style="background-color: white;">生まれ変わるとしたら・・・</h4>
-        <button class="btn_option_#q4" value="/1/3.4.5">人間</button>
-        <button class="btn_option_#q4" value="/20/1">貝</button><br>
-        <button class="btn_option_#q4" value="/1/6.7.10">それ以外(かっこいい系)</button>
-        <button class="btn_option_#q4" value="/1/2.8.9.11">それ以外(カワイイ系)</button>
+     <div id="q3" style="display: none;">
+        <div class="q_text row">
+            <h2>生まれ変わるとしたら・・・</h2>
+        </div>
+        <div class="q_img row">
+            <img src="img/ome.jpg" alt="rebirth">
+        </div>
+        <div class="q_btn row">
+            <button class="btn_option_#q4# btn col-5" value="/1/3.4.5">人間</button>
+            <button class="btn_option_#q4# btn col-5" value="/20/1">貝</button>
+            <button class="btn_option_#q4# btn col-5 btn-info" id="q3_btn_3" value="/1/6.7.10">それ以外(かっこいい系)</button>
+            <button class="btn_option_#q4# btn col-5" id="q3_btn_4" value="/1/2.8.9.11">それ以外(カワイイ系)</button>
+        </div>
     </div>
 
     <div id="q4" style="display: none;">
         <h4>将来、ハゲないか心配。もしくはすでに。</h4>
         <button class="btn_option_#q5" value="2/1/3.6.7.10">うむ・・</button>
         <button class="btn_option_#q5" value="/1/1.4.5.8.9.11">否</button><br>
+<div class="q_img">
 
-        <img src="img/bird_condor.png" style="margin-top: 100px; margin-right: 100px;" alt="">
+    <img src="img/bird_condor.png" style="margin-top: 100px; margin-right: 100px;" alt="">
+</div>
     </div> 
 
     <div id="q5" style="display: none; margin-top: 400px;">
