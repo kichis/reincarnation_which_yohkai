@@ -19,8 +19,12 @@
         crossorigin="anonymous"></script>
 
 <!-- フォント再考 -->
+    <!-- アクセント用 -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+    <!-- ベーシック用 -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
 
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Potta+One&display=swap" rel="stylesheet"> -->
@@ -28,14 +32,13 @@
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@700&display=swap" rel="stylesheet"> -->
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
 
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
         font-family: 'Sawarabi Mincho', sans-serif; -->
 
-
+    <!-- icon用 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 
     
@@ -45,7 +48,6 @@
 
 <!-- スタイル要調整 -->
 <!-- モバイルフレンドリー -->
-<!-- ライセンスに引っかからないようながぞうに変更 -->
 <!-- 戻るボタン対策 -->
 
 <!-- 最後にreadmeチェック -->
@@ -267,15 +269,22 @@
 
     <!-- 以下、結果コンポーネント -->
     <div id="result0" style="display: none;">
-        <h5>あなたが転生するなら・・・</h5>
-        <p>「垢舐め」です！</p>
-        <img src="img/akaname_2.jpg" alt="" display="height: 200px">
-        <p>風呂場に出没し、風呂桶にこびり付いた垢を舐め落とすと言う妖怪。「垢嘗」とも表記する。
-        外見は人間の子供に似ているが、ざんばら髪で鉤爪と長い舌を持つ。
-        『古今百物語評判』と言う書物によれば、古い風呂屋に棲む化物に「垢ねぶり」と言うものがあり、垢舐めはこの「垢ねぶり」と同一のもの、或いは根源を同じくする妖怪であると言われる。</p>
-        <a href="https://twitter.com/intent/tweet?text=&#091;あなたが妖怪に転生するなら？&#093;&#061;&#062;「垢舐め」です&#033;&hashtags=転生したら妖怪だった県" target="_blank">
-            Twitterでつぶやく<i class="fab fa-twitter-square 2x"></i>
-        </a>
+        <h3 class="if_you">あなたが転生するなら・・・</h3>
+        <div class="result_name row m-0">
+            <h1 class="m-0">「 <b>垢舐め</b> 」です！</h1>
+        </div>
+        <div class="result_img row m-0">
+            <img src="img/akaname.jpeg" alt="akaname">
+        </div>
+        <div class="result_text">
+            <p>どうやらあなたには以降の質問は不要のようです。それほど湯あかが好きなら来世は垢舐めになること間違いなし！<br>
+                夜、風呂場に出没し、風呂桶にこびり付いた垢を舐め落とすと言う妖怪です。他には何をするわけでもないので、知らぬ間にお掃除をしてくれる浴室版ルンバのような存在です。
+            </p>
+        </div>
+        <div class="result_tweet row m-0">
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&hashtags=転生したら妖怪だった件&text=あなたが妖怪に転生するなら・・『垢舐め』です。 ーー湯あかフェティシズム！" class="twitter-share-button" data-show-count="false">Tweet</a>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
     </div>
 
     <div id="result1" style="display: none;">
