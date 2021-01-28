@@ -90,10 +90,10 @@ window.addEventListener('hashchange', e => {
         $("#btn_reset").css("visibility", "visible");
     }
     // 前に戻るボタンと注意書きの表示管理
-    if ($("#btn_to_before, #inst_text").css("visibility", "") && /q[2-9]|1[0-3]/.test(newHash)) {
+    if ($("#btn_to_before, #inst_text").css("visibility", "") && /q[2-9]|q1[0-3]/.test(newHash)) {
         // 表示する場合
         $("#btn_to_before, #inst_text").css("visibility", "visible");
-    } else if ($("#btn_to_before, #inst_text").css("visibility", "visible") && !/q[2-9]|1[0-3]/.test(newHash)) { 
+    } else if ($("#btn_to_before, #inst_text").css("visibility", "visible") && !/q[2-9]|q1[0-3]/.test(newHash)) { 
         // 非表示にする場合
         $("#btn_to_before, #inst_text").css("visibility", "");
     }
