@@ -47,7 +47,6 @@
 <body>
 
 <!-- モバイルフレンドリー -->
-<!-- 戻るボタン対策 -->
 
 <!-- 最後にreadmeチェック -->
 
@@ -62,7 +61,8 @@
             
             <!--初期コンポーネント-->
             <div id="btn_start">
-                <h1 class="m-0 py-5">転生したら<br><span id="title_text"><span>よ</span><span>う</span><span>か</span><span>い</span></span>だった件</h1>
+                <h1 class="">転生したら<br><span id="title_text"><span>よ</span><span>う</span><span>か</span><span>い</span></span>だった件</h1>
+
                 <script>
                     $(window).on('load', function (e) {
                        var txtNum = 0;
@@ -72,6 +72,7 @@
                         }, 400);
                     })
                 </script>
+
                 <button id="start_btn" class="btn btn-warning" onclick="location.href='#q1';logs();">START!</button>
                 <div id="start_imgs" class="row m-0">
                     <div class="col-4">
@@ -82,18 +83,17 @@
                     </div>
                     <div class="col-4">
                         <img class="img_above" src="img/youkai_tengu.png" alt="youkai_tengu">
-                    </div>
-                    
+                    </div>            
                 </div>
             </div>
-            
+
         </div>
     </main>
 
     <footer class="row m-0">
         <button id="btn_to_before" class="btn btn-secondary"><i class="fas fa-hand-point-left fa-3x"></i><br><p>前に戻る</p></button>
         <button id="btn_reset" class="btn btn-secondary"><i class="fas fa-home fa-3x"></i><p>はじめに戻る</p></button>
-        <p id="inst_text">前の質問に戻るときは「前に戻る」ボタンを押してね！<br>(ブラウザの戻るボタンを押すと当サイトを離れます)</p>
+        <p id="inst_text">戻るときは「前に戻る」ボタンを押してね！</p>
     </footer>
 
 
@@ -142,8 +142,8 @@
         <div class="q_btn row m-0">
             <button class="btn_option_#q4# btn col-5" value="/1/3.4.5">人間</button>
             <button class="btn_option_#q4# btn col-5" value="/20/1">貝</button>
-            <button class="btn_option_#q4# btn col-5 btn-info" id="q3_btn_3" value="/1/6.7.10">それ以外(かっこいい系)</button>
-            <button class="btn_option_#q4# btn col-5" id="q3_btn_4" value="/1/2.8.9.11">それ以外(カワイイ系)</button>
+            <button class="btn_option_#q4# btn col-5 btn-info" id="q3_btn_3" value="/1/6.7.10">それ以外<br>(かっこいい系)</button>
+            <button class="btn_option_#q4# btn col-5" id="q3_btn_4" value="/1/2.8.9.11">それ以外<br>(カワイイ系)</button>
         </div>
     </div>
 
@@ -286,8 +286,8 @@
             <img src="img/akusyu_uchuujin.png" alt="encount">
         </div>
         <div class="q_btn row m-0">
-            <button class="btn_option_#last btn col-5" value="/1/1.3.5.7.9">広く浅く</button>
-            <button class="btn_option_#last btn col-5" value="11/1/2.4.6.8.10">狭く深く</button>
+            <button class="btn_option_#last# btn col-5" value="/1/1.3.5.7.9">広く浅く</button>
+            <button class="btn_option_#last# btn col-5" value="11/1/2.4.6.8.10">狭く深く</button>
         </div>
     </div>
 

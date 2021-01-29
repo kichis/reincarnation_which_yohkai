@@ -1,8 +1,11 @@
+/* @media (max-width: 400px) : iPhoneSE~iPhone6/7/8サイズを想定 */
+/* @media (min-height: 820px) : iPhoneX を想定*/
 html {
-    /* width: 100%; */
+    height: 100vh;
     font-size: 62.5%; /* -> 1em = 10px; */
 }
 body{
+    height: 100%;
     width: 100%;
     font-size: 1.4em; /* -> 14px; */
     font-family: 'Noto Sans JP', sans-serif;
@@ -10,7 +13,7 @@ body{
 
 
 header{
-    height: 10vh;
+    height: 10%;
     width: 100%;
     color: gray;
     font-family: 'Yusei Magic', sans-serif;
@@ -20,20 +23,25 @@ header{
 header h1{
     margin: auto auto;
 }
-
+@media (max-width: 400px){
+    header h1{font-size: 7vw;}
+}
 
 main{
-    height: 72vh;
+    height: 72%;
+    margin-bottom: 20%;
+    position: relative;
+    z-index: 0;
 }
 #q_area{
     height: 100%;
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
 }
-#q_area div{
-    width: 100%;
-}
+/* #q_area>div{
+    height: 100%;
+} */
 
 #btn_start{
     height: 100%;
@@ -41,27 +49,43 @@ main{
 }
 #btn_start h1{
     height: 40%;
+    width:fit-content;
     font-family: 'Yusei Magic', sans-serif;
-    font-size: 3.3rem;
-    letter-spacing: 0.5rem;
-    line-height: 7rem;
-    text-align: left;   
-    
+    font-size: 3.4rem;
+    letter-spacing: 0.1rem;
+    line-height: 6rem;
+    text-align: left;
+    padding: 5% 0;
+    margin: 0 auto;
+}
+@media (min-width: 700px) {
+    #btn_start h1{width: 70%;}
 }
 #title_text{
     color: orange;
     text-shadow: 2px 2px 2px rgba(254, 93, 91, 0.797);
-    font-size: 5.5rem;
     font-weight: bold;
+    font-size: 6rem;
     letter-spacing: 1rem;
     visibility: hidden;
 }
+@media (max-width: 400px){
+    #btn_start h1{
+        font-size: 2.2rem;
+        line-height: 5rem;
+    }
+    #title_text{
+    font-size: 3.7rem;
+    letter-spacing: 0.8rem;}
+}
+
 #start_btn{
     height: 20%;
+    color: rgba(38, 38, 38, 0.859);
     font-family: 'Yusei Magic', sans-serif;
     font-size: 2.5rem;
     letter-spacing: 1rem;
-    padding: 10% 10%;
+    padding: auto 20%;
 }
 
 #start_imgs{
@@ -79,11 +103,11 @@ main{
 }
 @keyframes downTop {
   from {
-    margin-top: 0%;
+    padding-top: 0%;
   }
 
   to {
-    margin-top: 20%;
+    padding-top: 20%;
   }
 }
 .img_below{
@@ -94,18 +118,22 @@ main{
 }
 @keyframes topDown {
   from {
-    margin-bottom: 0%;
+    padding-bottom: 0%;
   }
 
   to {
-    margin-bottom: 20%;
+    padding-bottom: 20%;
   }
 }
 
 footer{
-    height: 18vh;
+    height: 18%;
+    background-color: white;
     justify-content: space-between;
     padding-top: 8px;
+    position: fixed;
+    bottom: 0;
+    z-index: 5;
 }
 #btn_to_before{
     margin-left: 5%;
@@ -120,11 +148,17 @@ footer{
     margin: 5px 0;
 }
 #inst_text{
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     text-align: center;
     margin: auto auto;
     padding: 1% 2%;
     visibility: hidden;
+}
+@media (max-width: 400px){
+    footer{padding-top: 0;}
+    #btn_to_before, #btn_reset{padding: 0 2%;}
+    #btn_to_before p, #btn_reset p{margin: 0;}
+    #inst_text{font-size: 1.5rem;}
 }
 
 /* 質問コンポーネント共通 */
@@ -169,6 +203,8 @@ footer{
     border: 1px solid black;
 }
 
+
+
 /* 質問コンポーネント 独自スタイル */
 #q1 .q_btn button:first-child{
     font-family: 'Yusei Magic', sans-serif;
@@ -208,6 +244,9 @@ footer{
     border: 4px solid black;
     padding-top: 0.2%;
 }
+#q11 .q_img img{
+    width: 100%;
+}
 #q11_btn_1{
     color: white;
     background-color: gold;
@@ -219,6 +258,15 @@ footer{
 }
 #q12 .q_img h1{
     font-size: 15rem;
+}
+@media(min-height:820px){
+    #q8 .q_img img{width:33%;}
+}
+@media(max-width: 400px){
+    #q2 .q_text h2, #q5 .q_text h2, #q6 .q_text h2, #q7 .q_text h2{font-size: 1.7rem;}
+    #q8 .q_img img{width:33%;}
+    #q12 .q_img h1{font-size: 12rem;}
+    #q4 .q_btn button, #q8 .q_btn button, #q10 .q_btn button, #q11 .q_btn button{font-size: 1.5rem;}
 }
 
 /* 結果コンポーネント 共通 */
@@ -256,11 +304,21 @@ footer{
     font-size: 1.7rem;
     line-height: 1.7em;
     margin: 0;
+    padding-bottom: 50%;
 }
 .result_tweet{
     height: 5%;
+    width: 90%;
+    background-color: white;
     justify-content: center;
-    align-items: flex-end;
+    /* align-items: flex-end; */
+    position: fixed;
+    z-index: 4;
+}
+@media(max-width: 400px){
+    .result_text p{font-size: 1.5rem;}
+    #result5 .result_name, #result6 .result_name, #result10 .result_name, #result12 .result_name{font-size: 0.7rem;}
+    #result5 .result_name b, #result6 .result_name b, #result10 .result_name b, #result12 .result_name b{letter-spacing: 0.2rem;}
 }
 
 /* 結果コンポーネント 独自スタイル */

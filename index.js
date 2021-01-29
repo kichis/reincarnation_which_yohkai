@@ -14,6 +14,14 @@ for (let i = 0; i < yokaiArry.length; i++) {
 let logsYokaiDatas = [0]
 
 
+// ブラウザの戻るボタンを無効化する
+// ※本来はalertで警告すべきだが、通常のコンポーネント遷移のタイミングでも"popState"が発火するのでalertはつけない
+$(function () {
+    $(window).on("popstate", function (event) {
+        history.pushState(null, null, null);
+    });
+});
+
 // はじめに戻るボタン 
 $("#btn_reset").on("click", function () {
     location.reload();
@@ -44,7 +52,7 @@ $("[class^='btn_option']").on("click", function () {
     setPoint(this)
     logs()
     let nextid;
-    if ($(this).attr("class") == 'btn_option_#last') {
+    if ($(this).attr("class") == 'btn_option_#last# btn col-5') {
         // 最後の問題の選択肢を押したとき!!
         let num = judge()
         nextid = "result" + num
@@ -65,6 +73,7 @@ const setPoint = (where) => {
         featYokai.forEach(ele => { yokaiDatas[ele].point += 4 });
     }
     toWho.forEach(ele => { yokaiDatas[ele].point += quantityPoint });
+    console.log(yokaiDatas)
 }
 
 // その時点でのyokaiDatasをlogsYokaiDatasに保存する
@@ -163,36 +172,7 @@ const judge = () => {
         return arry[omikuji]
     }
 }
-// ページ遷移 (現在のコンポーネントを非表示＆指定したコンポーネントを表示)
-// const toNextPage = (nowid, nextid) => {
-//     // setTimeout(function () {
-//     $('#' + nowid).hide();
-//     var next = document.getElementById(nextid);
-//     $("#q_area").prepend(next);
-//     next.style.display = "";
-//     // }, 500);
-// }    
 
-
-// !! ボタンクリック時のアニメーション !!
-
-// start
-// $("#btn_start").on("click", function () {
-//     $("#btn_start").css("width", "220px"); //効果
-//     $("#btn_start").css("font-family", "'Noto Serif JP', serif"); //効果
-//     $("#btn_start").css("color", "white"); //効果
-//     $("#btn_start").css("border", "none"); //効果
-//     // toNextPage(btn_start, q1);
-// })
-
-// q5
-// $(".btn_option_#q5").on("click", function () {
-//     setTimeout(function () {
-//         const se1 = $('#hanauta');
-//         se1[0].currentTime = 0;
-//         se1[0].play();
-//     }, 500);
-// })
 
 // q11コンポーネントのボタンの点滅
 const styleA = { 'color': 'blue', 'background- color': '#ffec44', 'border': '3px dashed gold'}
@@ -205,7 +185,3 @@ $(function () {
         }, 500);
     }, 1000);
 });
-
-
-
-
