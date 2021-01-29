@@ -12,6 +12,7 @@ body{
 header{
     height: 10vh;
     width: 100%;
+    color: gray;
     font-family: 'Yusei Magic', sans-serif;
     /* font-family: 'Potta One', cursive; */
     /* font-family: 'Noto Serif JP', serif; */
@@ -35,12 +36,71 @@ main{
 }
 
 #btn_start{
+    height: 100%;
+    text-align: center;
+}
+#btn_start h1{
+    height: 40%;
+    font-family: 'Yusei Magic', sans-serif;
+    font-size: 3.3rem;
+    letter-spacing: 0.5rem;
+    line-height: 7rem;
+    text-align: left;   
+    
+}
+#title_text{
+    color: orange;
+    text-shadow: 2px 2px 2px rgba(254, 93, 91, 0.797);
+    font-size: 5.5rem;
+    font-weight: bold;
+    letter-spacing: 1rem;
+    visibility: hidden;
+}
+#start_btn{
+    height: 20%;
     font-family: 'Yusei Magic', sans-serif;
     font-size: 2.5rem;
     letter-spacing: 1rem;
     padding: 10% 10%;
 }
 
+#start_imgs{
+    height: 40%;
+    padding-top: 8%;
+}
+#start_imgs img{
+    width: 100%;
+}
+.img_above{
+    animation-duration: 500ms;
+    animation-name: downTop;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes downTop {
+  from {
+    margin-top: 0%;
+  }
+
+  to {
+    margin-top: 20%;
+  }
+}
+.img_below{
+    animation-duration: 1s;
+    animation-name: topDown;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes topDown {
+  from {
+    margin-bottom: 0%;
+  }
+
+  to {
+    margin-bottom: 20%;
+  }
+}
 
 footer{
     height: 18vh;

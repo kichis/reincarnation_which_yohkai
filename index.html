@@ -46,23 +46,47 @@
 </head>
 <body>
 
-<!-- スタイル要調整 -->
 <!-- モバイルフレンドリー -->
 <!-- 戻るボタン対策 -->
 
 <!-- 最後にreadmeチェック -->
 
     <!-- bg-danger -->
-    <header class="row m-0 bg-danger">
+    <header class="row m-0">
         <h1>『転生したら○○○○だった件』</h1>
     </header>
     
     <main>
         <div id="q_area" class="col-12">
             <!-- 差し替えコンポーネント表示エリア -->
-
-            <!--初期コンポーネント--><button id="btn_start" class="btn btn-outline-warning" onclick="location.href='#q1';logs();">START!</button>  
-                             
+            
+            <!--初期コンポーネント-->
+            <div id="btn_start">
+                <h1 class="m-0 py-5">転生したら<br><span id="title_text"><span>よ</span><span>う</span><span>か</span><span>い</span></span>だった件</h1>
+                <script>
+                    $(window).on('load', function (e) {
+                       var txtNum = 0;
+                        setInterval(function () {
+                            $('#title_text').find('span').eq(txtNum).css({ visibility: "visible" });
+                            txtNum++
+                        }, 400);
+                    })
+                </script>
+                <button id="start_btn" class="btn btn-warning" onclick="location.href='#q1';logs();">START!</button>
+                <div id="start_imgs" class="row m-0">
+                    <div class="col-4">
+                        <img class="img_above" src="img/youkai_daidarabocchi.png" alt="daidarabocchi">
+                    </div>
+                    <div class="col-4 align-self-end">
+                        <img class="img_below" src="img/youkai_jinmenken.png" alt="jinmenken" >
+                    </div>
+                    <div class="col-4">
+                        <img class="img_above" src="img/youkai_tengu.png" alt="youkai_tengu">
+                    </div>
+                    
+                </div>
+            </div>
+            
         </div>
     </main>
 
