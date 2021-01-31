@@ -6,7 +6,7 @@
 - 実際のアプリは[こちら]()で遊べます。
 
 ## 使用技術
-<img src="img/HTML5_Logo_128.png" width="130">
+<img src="img/HTML5_Logo_128.png" width="150">
 <img src="img/CSS3_logo_and_wordmark.png" width="100">
 <img src="img/javascript_logo.png" width="100">
 jQuery 2.1.3
