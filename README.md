@@ -8,10 +8,11 @@
 ## 使用技術
 
 ![HTML5](img/HTML5_Logo_128.png)
-<img src="img/CSS3_logo_and_wordmark.png" width="100">CSS3
+<img src="img/CSS3_logo_and_wordmark.png" width="100">
 <img src="img/javascript_logo.png" width="100">JavaScript  
 jQuery 2.1.3
 Bootstrap 4.3.1
+[html]:hyper text
 
 ## 妖怪判定アルゴリズム
 結果となる妖怪は全13種。
