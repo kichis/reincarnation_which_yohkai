@@ -8,8 +8,8 @@
 ## 使用技術
 <img src="img/HTML5_Logo_128.png" width="140" title="HTML5"><img src="img/CSS3_logo_and_wordmark.png" width="100" title="CSS3">
 <img src="img/javascript_logo.png" width="100" title="JavaScript">
-<img src="img/jquery-logo-001.png" width="100" title="jQuery 2.1.3 min">
-<img src="img/Bootstrap_logo.png" width="100" title="Bootstrap 4.3.1">
+<img src="img/jquery-logo-001.png" width="150" title="jQuery 2.1.3 min">
+<img src="img/Bootstrap_logo.png" width="120" title="Bootstrap 4.3.1">
 
 
 
