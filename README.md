@@ -12,7 +12,7 @@
 <img src="img/javascript_logo.png" width="100">JavaScript  
 jQuery 2.1.3
 Bootstrap 4.3.1
-[html]:hyper text
+*[html]:hyper text
 
 ## 妖怪判定アルゴリズム
 結果となる妖怪は全13種。
