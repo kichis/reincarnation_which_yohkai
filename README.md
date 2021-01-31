@@ -1,18 +1,19 @@
 # reincarnation_which_yohkai
-「転生したら〇〇〇〇だった件」
+『転生したら〇〇〇〇だった件』
 質問の答えると、”あなたが転生したらどんな妖怪になるか”を判定してくれるアプリ
 - 2020.5.28に製作した『転生したら○○だった件』をリファクタリングしたもの。
 - リファクタリングといいつつ「戻るボタン」の追加やスタイルの変更もあり。
 - 実際のアプリは[こちら]()で遊べます。  
-README 目次
+
+## README 目次
 1. [使用技術](#使用技術)
 1. [総括・感想](#今後の課題)
 
 ## 使用技術
 <img src="img/HTML5_Logo_128.png" width="140" title="HTML5"><img src="img/CSS3_logo_and_wordmark.png" width="100" title="CSS3">
 <img src="img/javascript_logo.png" width="100" title="JavaScript">
-<img src="img/jquery-logo-001.png" width="150" title="jQuery 2.1.3 min">
-<img src="img/Bootstrap_logo.png" width="120" title="Bootstrap 4.3.1">
+<img src="img/jquery-logo-001.png" width="150" title="jQuery 2.1.3 min">ver. 2.1.3 min
+<img src="img/Bootstrap_logo.png" width="120" title="Bootstrap 4.3.1">ver. 4.3.1
 
 
 
