@@ -14,7 +14,8 @@ jQuery 2.1.3
 Bootstrap 4.3.1  
 
 
-*[html]: hyper text
+*[HTML]: hyper text  
+HTML is power
 
 ## 妖怪判定アルゴリズム
 結果となる妖怪は全13種。
