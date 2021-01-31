@@ -6,7 +6,7 @@
 - 実際のアプリは[こちら]()で遊べます。
 README 目次
 - [使用技術](#使用技術)
-- [総括・感想](#総括・感想)
+- [総括・感想](#今後の課題)
 
 ## 使用技術
 <img src="img/HTML5_Logo_128.png" width="140" title="HTML5"><img src="img/CSS3_logo_and_wordmark.png" width="100" title="CSS3">
