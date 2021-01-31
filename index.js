@@ -52,7 +52,7 @@ $("[class^='btn_option']").on("click", function () {
     setPoint(this)
     logs()
     let nextid;
-    if ($(this).attr("class") == 'btn_option_#last# btn col-5') {
+    if ($(this).attr("class") == 'btn_option_#last# btn col-5 col-md-4') {
         // 最後の問題の選択肢を押したとき!!
         let num = judge()
         nextid = "result" + num
