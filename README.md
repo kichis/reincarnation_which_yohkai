@@ -16,6 +16,8 @@ Bootstrap 4.3.1
 
 *[HTML]: hyper text  
 HTML is power
+*[WWW]: World Wide Web
+WWW とは？
 
 ## 妖怪判定アルゴリズム
 結果となる妖怪は全13種。
