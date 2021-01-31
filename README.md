@@ -7,7 +7,7 @@
 
 ## 使用技術
 
-![HTML5](img/HTML5_logo_and_wordmark.svg.png)
+![HTML5](img/HTML5_Logo_128.png)
 CSS3
 JavaScript
 jQuery 2.1.3
