@@ -7,13 +7,14 @@
 
 ## README 目次
 1. [使用技術](#使用技術)
-1. [総括・感想](#今後の課題)
+1. [総括・感想](#今後の課題)  
 
 ## 使用技術
 <img src="img/HTML5_Logo_128.png" width="140" title="HTML5"><img src="img/CSS3_logo_and_wordmark.png" width="100" title="CSS3">
 <img src="img/javascript_logo.png" width="100" title="JavaScript">
 <img src="img/jquery-logo-001.png" width="150" title="jQuery 2.1.3 min"> 2.1.3 min
 <img src="img/Bootstrap_logo.png" width="120" title="Bootstrap 4.3.1"> 4.3.1  
+
 ## 妖怪判定アルゴリズム
 結果となる妖怪は全13種。
 回答者と各妖怪の親和性をポイントで表し、最終的に一番高いポイントを保有している妖怪を結果とする。(__例外__ あり)
